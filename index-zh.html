@@ -1,0 +1,1417 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SOM · 靳岛羽绘 — 品牌与增长策略师</title>
+  <meta name="description" content="SOM · 靳岛羽绘 — 跨界创意策略师，以品牌识别、内容营销与视觉设计驱动可衡量的业务增长。">
+
+  <!-- Google Fonts: Playfair Display (headings) + Inter (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================================
+       CSS CUSTOM PROPERTIES
+       ============================================================ */
+    :root {
+      /* Colors */
+      --color-bg:            #FDFBF7;
+      --color-bg-alt:        #F7F4EF;
+      --color-text-primary:  #1A1A1A;
+      --color-text-secondary:#6B6B6B;
+      --color-text-muted:    #9E9E9E;
+      --color-accent:        #B28B5E;
+      --color-accent-light:  #D4C5A9;
+      --color-accent-subtle: rgba(178, 139, 94, 0.08);
+      --color-border:        #E8E4DD;
+      --color-border-light:  #F0EDE8;
+      --color-white:         #FFFFFF;
+
+      /* Typography */
+      --font-heading: 'Playfair Display', 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+      --font-body:    'Inter', 'Helvetica Neue', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+
+      /* Spacing */
+      --space-section:  clamp(80px, 12vw, 160px);
+      --space-block:    clamp(40px, 6vw, 80px);
+      --space-element:  clamp(24px, 3vw, 48px);
+      --content-max:    1280px;
+      --content-narrow: 860px;
+
+      /* Transitions */
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out:    cubic-bezier(0.65, 0, 0.35, 1);
+      --duration-slow:  0.8s;
+      --duration-base:  0.6s;
+      --duration-fast:  0.3s;
+    }
+
+    /* ============================================================
+       RESET & BASE
+       ============================================================ */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: clamp(0.95rem, 1.6vw, 1.0625rem);
+      line-height: 1.7;
+      color: var(--color-text-primary);
+      background-color: var(--color-bg);
+      overflow-x: hidden;
+      letter-spacing: 0.01em;
+    }
+
+    /* Selection */
+    ::selection {
+      background: var(--color-accent-subtle);
+      color: var(--color-accent);
+    }
+
+    /* Links */
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: color var(--duration-fast) var(--ease-out-expo);
+    }
+
+    /* Images */
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* ============================================================
+       TYPOGRAPHY
+       ============================================================ */
+    h1, h2, h3, h4 {
+      font-family: var(--font-heading);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+    }
+
+    .section-label {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: var(--space-element);
+    }
+
+    /* ============================================================
+       NAVIGATION
+       ============================================================ */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 1.5rem 0;
+      transition: all var(--duration-base) var(--ease-out-expo);
+    }
+
+    .nav.scrolled {
+      background: rgba(253, 251, 247, 0.72);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      padding: 0.875rem 0;
+      border-bottom: 1px solid rgba(232, 228, 221, 0.4);
+    }
+
+    .nav-inner {
+      max-width: var(--content-max);
+      margin: 0 auto;
+      padding: 0 clamp(20px, 4vw, 60px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      color: var(--color-text-primary);
+      white-space: nowrap;
+      position: relative;
+      z-index: 1001;
+    }
+
+    .nav-logo .dot {
+      color: var(--color-accent);
+      margin: 0 0.05em;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-size: 0.8125rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-text-secondary);
+      position: relative;
+      padding: 0.25rem 0;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--color-accent);
+      transition: width var(--duration-base) var(--ease-out-expo);
+    }
+
+    .nav-links a:hover {
+      color: var(--color-text-primary);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* Hamburger */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+      z-index: 1001;
+      position: relative;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--color-text-primary);
+      transition: all var(--duration-base) var(--ease-out-expo);
+      transform-origin: center;
+    }
+
+    .nav-hamburger.active span:nth-child(1) {
+      transform: translateY(6.5px) rotate(45deg);
+    }
+    .nav-hamburger.active span:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+    .nav-hamburger.active span:nth-child(3) {
+      transform: translateY(-6.5px) rotate(-45deg);
+    }
+
+    /* Mobile menu */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 100%;
+      max-width: 400px;
+      height: 100vh;
+      height: 100dvh;
+      background: rgba(253, 251, 247, 0.97);
+      backdrop-filter: saturate(180%) blur(30px);
+      -webkit-backdrop-filter: saturate(180%) blur(30px);
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+      transform: translateX(100%);
+      transition: transform var(--duration-slow) var(--ease-out-expo);
+    }
+
+    .mobile-menu.open {
+      transform: translateX(0);
+    }
+
+    .mobile-menu a {
+      font-family: var(--font-heading);
+      font-size: 1.75rem;
+      letter-spacing: 0.06em;
+      color: var(--color-text-primary);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all var(--duration-slow) var(--ease-out-expo);
+    }
+
+    .mobile-menu.open a {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .mobile-menu.open a:nth-child(1) { transition-delay: 0.1s; }
+    .mobile-menu.open a:nth-child(2) { transition-delay: 0.2s; }
+    .mobile-menu.open a:nth-child(3) { transition-delay: 0.3s; }
+    .mobile-menu.open a:nth-child(4) { transition-delay: 0.4s; }
+
+    .mobile-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.2);
+      z-index: 998;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--duration-slow) var(--ease-out-expo);
+    }
+
+    .mobile-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* ============================================================
+       HERO
+       ============================================================ */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px clamp(20px, 4vw, 60px) 80px;
+      overflow: hidden;
+      background: radial-gradient(ellipse 80% 60% at 50% 40%, #FBF8F2 0%, var(--color-bg) 70%);
+    }
+
+    /* Mouse-following gradient glow */
+    .hero-glow {
+      position: absolute;
+      pointer-events: none;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle at center,
+        rgba(178, 139, 94, 0.10) 0%,
+        rgba(212, 197, 169, 0.05) 35%,
+        transparent 70%
+      );
+      transform: translate(-50%, -50%);
+      z-index: 0;
+      will-change: left, top;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title {
+      font-size: clamp(2.75rem, 6.5vw, 5rem);
+      font-weight: 400;
+      line-height: 1.08;
+      color: var(--color-text-primary);
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.015em;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--color-accent);
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1rem, 1.8vw, 1.2rem);
+      font-weight: 300;
+      color: var(--color-text-secondary);
+      line-height: 1.65;
+      max-width: 480px;
+      margin: 0 auto 3rem;
+    }
+
+    /* Scroll indicator */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      z-index: 1;
+      opacity: 0.6;
+      animation: scrollFade 2.5s ease-in-out infinite;
+    }
+
+    .scroll-indicator span {
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+    }
+
+    .scroll-indicator .line {
+      width: 1px;
+      height: 32px;
+      background: var(--color-text-muted);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .scroll-indicator .line::after {
+      content: '';
+      position: absolute;
+      top: -100%;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--color-accent);
+      animation: scrollLine 2.5s ease-in-out infinite;
+    }
+
+    @keyframes scrollFade {
+      0%, 100% { opacity: 0.4; }
+      50%      { opacity: 0.9; }
+    }
+
+    @keyframes scrollLine {
+      0%   { top: -100%; }
+      50%  { top: 100%; }
+      100% { top: 100%; }
+    }
+
+    /* ============================================================
+       WORK / PROJECTS SECTION
+       ============================================================ */
+    .section-work {
+      padding: var(--space-section) 0;
+    }
+
+    .section-inner {
+      max-width: var(--content-max);
+      margin: 0 auto;
+      padding: 0 clamp(20px, 4vw, 60px);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: var(--space-section);
+    }
+
+    .section-header h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--color-text-primary);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-header p {
+      color: var(--color-text-secondary);
+      font-weight: 300;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* Project card */
+    .project-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(40px, 8vw, 100px);
+      align-items: center;
+      margin-bottom: var(--space-section);
+    }
+
+    .project-card:last-child {
+      margin-bottom: 0;
+    }
+
+    .project-card.reverse .project-image-wrap {
+      order: 2;
+    }
+    .project-card.reverse .project-info {
+      order: 1;
+    }
+
+    .project-image-wrap {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 4 / 5;
+      background: var(--color-bg-alt);
+    }
+
+    .project-image-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 1.2s var(--ease-out-expo), filter 1.2s var(--ease-out-expo);
+    }
+
+    .project-image-wrap:hover img {
+      transform: scale(1.02);
+      filter: brightness(1.04);
+    }
+
+    .project-image-wrap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(26, 26, 26, 0.03) 0%, transparent 40%);
+      pointer-events: none;
+    }
+
+    .project-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .project-number {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      color: var(--color-accent);
+      text-transform: uppercase;
+    }
+
+    .project-info h3 {
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      font-weight: 400;
+      color: var(--color-text-primary);
+      line-height: 1.2;
+    }
+
+    .project-info p {
+      color: var(--color-text-secondary);
+      font-weight: 300;
+      line-height: 1.7;
+      max-width: 420px;
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      padding-bottom: 4px;
+      border-bottom: 1px solid var(--color-accent-light);
+      transition: all var(--duration-base) var(--ease-out-expo);
+      width: fit-content;
+      margin-top: 0.5rem;
+    }
+
+    .project-link:hover {
+      color: var(--color-text-primary);
+      border-bottom-color: var(--color-text-primary);
+      gap: 0.75rem;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 0.25rem;
+    }
+
+    .project-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      color: var(--color-text-muted);
+      padding: 0.25rem 0.75rem;
+      border: 1px solid var(--color-border);
+      border-radius: 100px;
+      transition: all var(--duration-fast) var(--ease-out-expo);
+    }
+
+    .project-tag:hover {
+      border-color: var(--color-accent-light);
+      color: var(--color-accent);
+    }
+
+    .project-objective {
+      font-size: 0.9rem;
+      color: var(--color-text-secondary);
+      line-height: 1.65;
+    }
+
+    .project-objective strong {
+      font-weight: 500;
+      color: var(--color-text-primary);
+    }
+
+    .project-results {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem 2rem;
+      padding: 1.25rem 0;
+      border-top: 1px solid var(--color-border-light);
+      border-bottom: 1px solid var(--color-border-light);
+    }
+
+    .result-item {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+    }
+
+    .result-item strong {
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      font-weight: 500;
+      color: var(--color-accent);
+      line-height: 1;
+    }
+
+    .result-item span {
+      font-size: 0.8rem;
+      color: var(--color-text-secondary);
+      line-height: 1.4;
+      max-width: 200px;
+    }
+
+    /* ============================================================
+       ABOUT SECTION
+       ============================================================ */
+    .section-about {
+      padding: var(--space-section) 0;
+      background: var(--color-bg-alt);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 5fr 7fr;
+      gap: clamp(40px, 8vw, 100px);
+      align-items: center;
+    }
+
+    .about-image {
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+      background: var(--color-bg);
+    }
+
+    .about-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(15%) brightness(0.98);
+      transition: filter 1.2s var(--ease-out-expo);
+    }
+
+    .about-image:hover img {
+      filter: grayscale(0%) brightness(1);
+    }
+
+    .about-text h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 1.5rem;
+      color: var(--color-text-primary);
+    }
+
+    .about-text p {
+      color: var(--color-text-secondary);
+      font-weight: 300;
+      line-height: 1.8;
+      margin-bottom: 1.25rem;
+      max-width: 520px;
+    }
+
+    .about-text .lead {
+      font-size: 1.15rem;
+      color: var(--color-text-primary);
+      font-weight: 400;
+      line-height: 1.65;
+    }
+
+    /* Tools list */
+    .tools-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem 1.5rem;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .tools-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--color-text-secondary);
+      list-style: none;
+    }
+
+    .tools-list li::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--color-accent);
+      flex-shrink: 0;
+    }
+
+    /* Experience blocks (About) */
+    .exp-block {
+      margin-bottom: 1.75rem;
+    }
+
+    .exp-title {
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--color-text-primary);
+      margin-bottom: 0.2rem;
+      letter-spacing: 0.01em;
+    }
+
+    .exp-meta {
+      font-size: 0.8rem;
+      color: var(--color-accent);
+      margin-bottom: 0.75rem;
+      letter-spacing: 0.03em;
+    }
+
+    .exp-meta span {
+      color: var(--color-border);
+      margin: 0 0.35em;
+    }
+
+    .exp-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .exp-list li {
+      position: relative;
+      padding-left: 1rem;
+      margin-bottom: 0.55rem;
+      font-size: 0.9rem;
+      color: var(--color-text-secondary);
+      line-height: 1.65;
+    }
+
+    .exp-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.6em;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--color-accent-light);
+    }
+
+    .exp-list li strong {
+      font-weight: 500;
+      color: var(--color-text-primary);
+    }
+
+    /* Education & Awards extras */
+    .about-extras {
+      margin-top: var(--space-block);
+      padding-top: var(--space-block);
+      border-top: 1px solid var(--color-border);
+    }
+
+    .extras-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(32px, 6vw, 64px);
+    }
+
+    .extra-item {
+      margin-bottom: 1.25rem;
+    }
+
+    .extra-item strong {
+      display: block;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--color-text-primary);
+      margin-bottom: 0.2rem;
+    }
+
+    .extra-item span {
+      font-size: 0.85rem;
+      color: var(--color-text-secondary);
+      line-height: 1.5;
+    }
+
+    /* Brand / recognition row */
+    .brands-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: clamp(2rem, 5vw, 4rem);
+      margin-top: var(--space-section);
+      padding-top: var(--space-block);
+      border-top: 1px solid var(--color-border);
+    }
+
+    .brand-item {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      color: var(--color-text-muted);
+      letter-spacing: 0.06em;
+      opacity: 0.5;
+      transition: all var(--duration-base) var(--ease-out-expo);
+    }
+
+    .brand-item:hover {
+      opacity: 0.8;
+      color: var(--color-accent);
+    }
+
+    /* ============================================================
+       CONTACT / FOOTER
+       ============================================================ */
+    .section-contact {
+      padding: var(--space-section) 0;
+      text-align: center;
+    }
+
+    .contact-inner {
+      max-width: var(--content-narrow);
+      margin: 0 auto;
+      padding: 0 clamp(20px, 4vw, 60px);
+    }
+
+    .contact-inner h2 {
+      font-size: clamp(2.25rem, 5vw, 3.75rem);
+      font-weight: 400;
+      color: var(--color-text-primary);
+      margin-bottom: 1rem;
+      line-height: 1.15;
+    }
+
+    .contact-inner > p {
+      color: var(--color-text-secondary);
+      font-weight: 300;
+      margin-bottom: 2.5rem;
+      font-size: 1.1rem;
+    }
+
+    .contact-email {
+      display: inline-block;
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      color: var(--color-accent);
+      letter-spacing: 0.02em;
+      padding-bottom: 4px;
+      border-bottom: 1px solid var(--color-accent-light);
+      transition: all var(--duration-base) var(--ease-out-expo);
+      margin-bottom: 3rem;
+    }
+
+    .contact-email:hover {
+      color: var(--color-text-primary);
+      border-bottom-color: var(--color-text-primary);
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .social-links a {
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      transition: color var(--duration-fast) var(--ease-out-expo);
+    }
+
+    .social-links a:hover {
+      color: var(--color-accent);
+    }
+
+    .footer-bottom {
+      padding: 2rem 0;
+      border-top: 1px solid var(--color-border-light);
+    }
+
+    .footer-bottom p {
+      font-size: 0.725rem;
+      color: var(--color-text-muted);
+      letter-spacing: 0.04em;
+    }
+
+    /* ============================================================
+       SCROLL ANIMATIONS (Intersection Observer)
+       ============================================================ */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity var(--duration-slow) var(--ease-out-expo),
+                  transform var(--duration-slow) var(--ease-out-expo);
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Stagger children */
+    .stagger-children > .fade-up:nth-child(1) { transition-delay: 0.00s; }
+    .stagger-children > .fade-up:nth-child(2) { transition-delay: 0.12s; }
+    .stagger-children > .fade-up:nth-child(3) { transition-delay: 0.24s; }
+    .stagger-children > .fade-up:nth-child(4) { transition-delay: 0.36s; }
+
+    /* ============================================================
+       RESPONSIVE
+       ============================================================ */
+    @media (max-width: 1024px) {
+      .nav-links {
+        gap: 1.75rem;
+      }
+
+      .project-card {
+        gap: 48px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .nav-hamburger {
+        display: flex;
+      }
+
+      .hero-glow {
+        width: 400px;
+        height: 400px;
+      }
+
+      .project-card,
+      .project-card.reverse {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .project-card.reverse .project-image-wrap {
+        order: -1;
+      }
+      .project-card.reverse .project-info {
+        order: 0;
+      }
+
+      .project-image-wrap {
+        aspect-ratio: 4 / 3;
+      }
+
+      .project-info p {
+        max-width: 100%;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .about-image {
+        aspect-ratio: 4 / 3;
+        max-width: 400px;
+        margin: 0 auto;
+      }
+
+      .about-text p {
+        max-width: 100%;
+      }
+
+      .brands-row {
+        gap: 2rem;
+      }
+
+      .extras-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .result-item span {
+        max-width: none;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nav {
+        padding: 1rem 0;
+      }
+      .nav.scrolled {
+        padding: 0.625rem 0;
+      }
+
+      .nav-logo {
+        font-size: 1.05rem;
+      }
+
+      .hero-glow {
+        width: 280px;
+        height: 280px;
+      }
+
+      .hero-eyebrow {
+        font-size: 0.65rem;
+      }
+
+      .section-header {
+        margin-bottom: var(--space-block);
+      }
+
+      .project-image-wrap {
+        aspect-ratio: 3 / 4;
+      }
+
+      .social-links {
+        gap: 1.25rem;
+      }
+
+      .social-links a {
+        font-size: 0.7rem;
+      }
+
+      .contact-email {
+        font-size: 1.2rem;
+      }
+
+      .tools-list {
+        gap: 0.75rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVIGATION
+       ============================================================ -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">SOM<span class="dot">·</span>靳岛羽绘</a>
+
+      <ul class="nav-links">
+        <li><a href="#home">首页</a></li>
+        <li><a href="#work">项目</a></li>
+        <li><a href="#about">关于</a></li>
+        <li><a href="#contact">联系</a></li>
+      </ul>
+
+      <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#home" data-close>首页</a>
+    <a href="#work" data-close>项目</a>
+    <a href="#about" data-close>关于</a>
+    <a href="#contact" data-close>联系</a>
+  </div>
+
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
+  <section class="hero" id="home">
+    <div class="hero-glow" id="heroGlow"></div>
+
+    <div class="hero-content fade-up visible">
+      <p class="hero-eyebrow">品牌与增长策略师</p>
+      <h1 class="hero-title">
+        以创意<em>驱动增长</em>
+      </h1>
+      <p class="hero-subtitle">
+        跨界创意策略师，以品牌识别、内容营销与视觉设计为核心，为品牌打造可衡量的商业增长。
+      </p>
+    </div>
+
+    <div class="scroll-indicator" aria-hidden="true">
+      <span>向下滚动</span>
+      <div class="line"></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       WORK / PROJECTS
+       ============================================================ -->
+  <section class="section-work" id="work">
+    <div class="section-inner">
+      <div class="section-header fade-up">
+        <p class="section-label">精选项目</p>
+        <h2>案例研究</h2>
+        <p>从品牌孵化到病毒式内容营销——每一个项目都始于策略，终于可衡量的增长。</p>
+      </div>
+
+      <div class="stagger-children">
+        <!-- Project 1: 金请请 — Image Left, Text Right -->
+        <article class="project-card fade-up">
+          <div class="project-image-wrap">
+            <img
+              src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=800&h=1000&fit=crop&q=85"
+              alt="精致的植物插画，柔和自然光与环保纹理"
+              loading="lazy"
+            >
+          </div>
+          <div class="project-info">
+            <span class="project-number">01</span>
+            <h3>「金请请」— 独立品牌孵化</h3>
+            <p class="project-objective"><strong>目标：</strong>在 10 天内，以零营销预算从零设计、生产并上线一个全新的文创品牌。</p>
+            <p>执行了全链路品牌孵化模式——基于小众"仙家"民俗文化定义品牌识别，设计了 16 款独特产品 SKU，协调多家供应商确保高质量生产与按时交付，同时制定小红书内容策略进行预热与早期社群建设。</p>
+            <div class="project-results">
+              <div class="result-item"><strong>90%</strong><span>本地市集 3 天内售罄，验证产品-市场契合度</span></div>
+              <div class="result-item"><strong>180+</strong><span>高质量长期客户导入私域社群，建立未来增长基础</span></div>
+            </div>
+            <div class="project-tags">
+              <span class="project-tag">品牌孵化</span>
+              <span class="project-tag">产品设计</span>
+              <span class="project-tag">内容策略</span>
+              <span class="project-tag">社群建设</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 2: CHAGEE — Image Right, Text Left -->
+        <article class="project-card reverse fade-up">
+          <div class="project-image-wrap">
+            <img
+              src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=800&h=1000&fit=crop&q=85"
+              alt="优雅的茶道场景，温暖琥珀色调与当代美学"
+              loading="lazy"
+            >
+          </div>
+          <div class="project-info">
+            <span class="project-number">02</span>
+            <h3>霸王茶姬 — 新品上市营销</h3>
+            <p class="project-objective"><strong>目标：</strong>为新品在小红书平台制造声量，引发用户自传播。</p>
+            <p>以"新中式茶饮"美学为核心，打造了一系列病毒式内容。通过精心设计的视觉与文案，精准触达年轻、注重审美的目标受众，并融入互动机制激发用户生成内容（UGC），成功将新品定位为社交平台热门话题。</p>
+            <div class="project-results">
+              <div class="result-item"><strong>1000万+</strong><span>核心内容曝光量</span></div>
+              <div class="result-item"><strong>5万+</strong><span>点赞互动，成功引爆产品话题讨论</span></div>
+            </div>
+            <div class="project-tags">
+              <span class="project-tag">社交媒体营销</span>
+              <span class="project-tag">内容策略</span>
+              <span class="project-tag">视觉设计</span>
+              <span class="project-tag">小红书</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       ABOUT
+       ============================================================ -->
+  <section class="section-about" id="about">
+    <div class="section-inner">
+      <div class="section-header fade-up">
+        <p class="section-label">关于</p>
+        <h2>作品背后的故事</h2>
+      </div>
+
+      <div class="about-grid fade-up">
+        <div class="about-image">
+          <img
+            src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=600&h=800&fit=crop&q=85"
+            alt="优雅的黑白人像摄影"
+            loading="lazy"
+          >
+        </div>
+        <div class="about-text">
+          <p class="lead">
+            拥有 4 年以上经验的跨界创意策略师，擅长以品牌识别、内容营销与视觉设计驱动可衡量的业务增长。
+          </p>
+          <p>
+            具备独立管理端到端项目的能力——从最初的创意构思与策略制定，到全面执行与市场渗透。正在寻求远程职位，希望在快节奏的环境中发挥创意与商业双重敏锐度。
+          </p>
+
+          <!-- Experience blocks -->
+          <div class="exp-block">
+            <h4 class="exp-title">独立创意与品牌策略师</h4>
+            <p class="exp-meta">远程 / 自由职业 <span>|</span> 2022 – 至今</p>
+            <ul class="exp-list">
+              <li>构思并上线了心灵疗愈品牌<strong>"所愿皆满"</strong>，将品牌核心理念定义为"以共鸣连接人心"，将小众文化概念转化为可持续的商业模式。</li>
+              <li>通过设计从公域平台（小红书）到私域社群的全链路用户旅程，驱动社群互动与商业变现，实施增长策略，激发 UGC 并创建了自我运转的生态体系。</li>
+              <li>为包括方太、美的、霸王茶姬在内的 <strong>5+ 主要品牌客户</strong>提供品牌与内容咨询服务，制定的内容策略带来了品牌曝光与用户互动的显著增长。</li>
+            </ul>
+          </div>
+
+          <div class="exp-block">
+            <h4 class="exp-title">创意设计师 &amp; 品牌助理</h4>
+            <p class="exp-meta">中国北京 <span>|</span> 2018 – 2022</p>
+            <ul class="exp-list">
+              <li>作为创意团队核心成员，为餐饮、科技、时尚等多个行业的客户提供全方位的设计解决方案。</li>
+              <li>与市场及销售部门协作，将业务目标转化为有感染力的视觉与内容策略。</li>
+              <li>参与开发超过 <strong>10 个品牌识别系统</strong>，确保一致性与市场适配度。</li>
+            </ul>
+          </div>
+
+          <!-- Skills -->
+          <ul class="tools-list">
+            <li>品牌识别与故事叙述</li>
+            <li>内容策略</li>
+            <li>社交媒体营销</li>
+            <li>UX/UI 设计</li>
+            <li>Adobe Creative Suite</li>
+            <li>Figma</li>
+            <li>文案撰写</li>
+            <li>社群建设</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Education & Awards row -->
+      <div class="about-extras fade-up">
+        <div class="extras-grid">
+          <div class="extra-block">
+            <p class="section-label" style="margin-bottom:1rem;">教育背景</p>
+            <div class="extra-item">
+              <strong>时尚营销与品牌管理 硕士</strong>
+              <span>南安普顿大学 — 预计 2027 年毕业</span>
+            </div>
+            <div class="extra-item">
+              <strong>视觉传达设计 学士</strong>
+              <span>湖南工程学院 — 2018 – 2022</span>
+            </div>
+          </div>
+          <div class="extra-block">
+            <p class="section-label" style="margin-bottom:1rem;">荣誉与奖项</p>
+            <div class="extra-item">
+              <strong>三等奖</strong>
+              <span>2021 湖南省大学生广告艺术大赛</span>
+            </div>
+            <div class="extra-item">
+              <strong>前 15 强</strong>
+              <span>2021 MIT 国际旅游小姐大赛</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Brand / Client row -->
+      <div class="brands-row fade-up">
+        <span class="brand-item">方太</span>
+        <span class="brand-item">美的</span>
+        <span class="brand-item">霸王茶姬</span>
+        <span class="brand-item">小红书</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CONTACT
+       ============================================================ -->
+  <section class="section-contact" id="contact">
+    <div class="contact-inner fade-up">
+      <p class="section-label">联系</p>
+      <h2>一起合作吧</h2>
+      <p>目前开放接受精选项目与品牌合作。无论是品牌难题还是一声问候——期待与你交流。</p>
+
+      <a href="mailto:somwork@163.com" class="contact-email">somwork@163.com</a>
+
+      <div class="social-links">
+        <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="#" target="_blank" rel="noopener">Xiaohongshu</a>
+        <a href="mailto:somwork@163.com">Email</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 SOM · 靳岛羽绘. 保留所有权利。</p>
+      <p style="margin-top: 0.25rem;">以匠心设计，以诚意构建。</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SCRIPTS
+       ============================================================ -->
+  <script>
+    (function () {
+      'use strict';
+
+      // ── DOM refs ──────────────────────────────────────────
+      const nav        = document.getElementById('nav');
+      const hamburger  = document.getElementById('hamburger');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const overlay    = document.getElementById('mobileOverlay');
+      const heroGlow   = document.getElementById('heroGlow');
+
+      // ── Nav scroll effect (glassmorphism) ─────────────────
+      let lastScrollY = 0;
+
+      function onScroll() {
+        const y = window.scrollY;
+        lastScrollY = y;
+
+        if (y > 80) {
+          nav.classList.add('scrolled');
+        } else {
+          nav.classList.remove('scrolled');
+        }
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll(); // initial check
+
+      // ── Mobile menu toggle ────────────────────────────────
+      function openMenu() {
+        mobileMenu.classList.add('open');
+        overlay.classList.add('active');
+        hamburger.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeMenu() {
+        mobileMenu.classList.remove('open');
+        overlay.classList.remove('active');
+        hamburger.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      hamburger.addEventListener('click', () => {
+        if (mobileMenu.classList.contains('open')) {
+          closeMenu();
+        } else {
+          openMenu();
+        }
+      });
+
+      overlay.addEventListener('click', closeMenu);
+
+      // Close on anchor clicks inside mobile menu
+      mobileMenu.querySelectorAll('[data-close]').forEach(link => {
+        link.addEventListener('click', () => {
+          closeMenu();
+        });
+      });
+
+      // Close on Escape
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+          closeMenu();
+        }
+      });
+
+      // ── Hero mouse-follow glow ────────────────────────────
+      const hero = document.querySelector('.hero');
+
+      if (hero && heroGlow && window.matchMedia('(pointer: fine)').matches) {
+        hero.addEventListener('mousemove', (e) => {
+          const rect = hero.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+
+          heroGlow.style.left = x + 'px';
+          heroGlow.style.top  = y + 'px';
+        });
+
+        hero.addEventListener('mouseleave', () => {
+          // Smoothly drift back to center
+          heroGlow.style.left = '50%';
+          heroGlow.style.top  = '50%';
+        });
+
+        // Set initial position
+        heroGlow.style.left = '50%';
+        heroGlow.style.top  = '50%';
+      } else if (heroGlow) {
+        // On touch devices, center the glow and keep it static
+        heroGlow.style.left = '50%';
+        heroGlow.style.top  = '50%';
+        heroGlow.style.opacity = '0.6';
+      }
+
+      // ── Intersection Observer for scroll animations ───────
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px -48px 0px',
+        threshold: 0.08,
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            // Once visible, stop observing (keep it visible)
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      // Observe all fade-up elements
+      document.querySelectorAll('.fade-up').forEach(el => {
+        // Hero content is already visible — skip
+        if (el.closest('.hero') && el.classList.contains('visible')) {
+          return;
+        }
+        observer.observe(el);
+      });
+
+      // ── Smooth scroll for nav links (redundant with CSS but as fallback) ──
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          const targetId = this.getAttribute('href');
+          if (targetId === '#') return;
+          const target = document.querySelector(targetId);
+          if (target) {
+            e.preventDefault();
+            const navHeight = nav.getBoundingClientRect().height;
+            const top = target.getBoundingClientRect().top + window.scrollY - navHeight - 16;
+            window.scrollTo({ top, behavior: 'smooth' });
+          }
+        });
+      });
+
+    })();
+  </script>
+</body>
+</html>
