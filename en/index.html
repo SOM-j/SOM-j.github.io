@@ -1,1 +1,1693 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"><meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Som Yu Ning Brand Strategist & Creative Designer</title><meta name="description" content="Som Yu Ning — Brand Strategist & Creative Designer."><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Arapey:ital@0;1&family=Fira+Sans:wght@300;400&display=swap" rel="stylesheet">
 
+  <style>
+    :root {
+      --bg:       #FFFFFF;
+      --bg-alt:   #FAFAFA;
+      --bg-even:  #FFFFFF;
+      --text:     #222222;
+      --muted:    #5F5F5F;
+      --faint:    #8E8E8E;
+      --accent:   #a89880;
+      --accent-l: #d4cdc0;
+      --accent-hover: #b8a890;
+      --sage:     #a0ada0;
+      --terracotta: #C67C6E;
+      --terracotta-l: #D4A394;
+      --link:     #5F5F5F;
+      --accent-ghost: rgba(168,152,128,0.04);
+      --border:   rgba(0,0,0,0.08);
+      --serif:   'Arapey', Georgia, serif;
+      --sans:    'Fira Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --gap:      120px;
+      --gap-sm:   clamp(60px, 8vw, 96px);
+      --ease:     cubic-bezier(0.22, 1, 0.36, 1);
+      --ease-hover: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --ease-out: cubic-bezier(0.33, 1, 0.68, 1);
+      --card-bg:  #FFFFFF;
+      --card-grad: linear-gradient(180deg, #FFFFFF 0%, #FAFAFA 100%);
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.03);
+      --shadow-md: 0 2px 8px rgba(0,0,0,0.04);
+      --shadow-lg: 0 4px 16px rgba(0,0,0,0.06);
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; -webkit-font-smoothing:antialiased; }
+    body {
+      font-family:var(--sans); font-weight:300; font-size:15px; line-height:1.95;
+      color:var(--text); overflow-x:hidden; letter-spacing:0.03em;
+      position:relative; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+      background:#fff;
+    }
+    /* 极淡噪点纹理 */
+    body::after {
+      content:'';
+      position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:0.25;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+      background-size:256px 256px;
+    }
+
+    ::selection { background:rgba(184,160,136,0.12); color:var(--accent); }
+    a { color:var(--link); text-decoration:none; transition:color 0.6s var(--ease-hover); }
+    a:hover { color:var(--accent); }
+    img { display:block; max-width:100%; height:auto; }
+    /* Warm film-toned filter — unified sepia + slight saturation boost */
+    .proj-img img, .cap-img img, .about-pic img, .photo-row img,
+    .sp-thumb img, .sp-gallery-track img, .cap-photo-grid img, .modal-gallery img,
+    .modal-gallery .hero-img {
+      filter: sepia(0.08) saturate(1.1) brightness(1.02);
+    }
+    /* ── Image vignette: inset shadow for photo-paper edge feel ── */
+    .proj-img, .about-pic, .modal-gallery .hero-img-wrap, .cap-img {
+      position:relative;
+    }
+    .proj-img::before, .about-pic::before, .modal-gallery .hero-img-wrap::before {
+      content:''; position:absolute; inset:0; z-index:1; pointer-events:none;
+      border-radius:inherit;
+      box-shadow:inset 0 0 30px rgba(58,58,58,0.06), inset 0 0 8px rgba(58,58,58,0.03);
+    }
+    /* ── Image load fade-in ── */
+    img {
+      opacity:0; transition:opacity 0.8s var(--ease);
+    }
+    img[complete], img.complete, img[loading="lazy"]:not([src=]) {
+      /* handled by JS below */
+    }
+    img.loaded { opacity:1; }
+
+    /* ── NAV ── */
+    .nav {
+      position:fixed; top:0; left:0; width:100%; z-index:100;
+      padding:22px 0; transition:all 0.8s var(--ease-hover);
+    }
+    .nav.on {
+      background:linear-gradient(180deg, rgba(240,244,238,0.92) 0%, rgba(240,244,238,0.6) 60%, rgba(240,244,238,0.2) 100%);
+      backdrop-filter:blur(20px) saturate(1); -webkit-backdrop-filter:blur(20px) saturate(1);
+      padding:14px 0; border-bottom:none;
+      box-shadow:none;
+    }
+    .nav-inner {
+      max-width:1280px; margin:0 auto; padding:0 48px;
+      display:flex; align-items:center; justify-content:space-between;
+    }
+    .nav-logo {
+      font-family:var(--serif); font-size:20px; font-weight:400;
+      letter-spacing:0.12em; z-index:101;
+    }
+    .nav-logo i { color:var(--accent); font-style:normal; }
+
+    /* ── 黑胶唱片播放器 ── */
+    .vinyl-player {
+      display:flex; align-items:center; gap:12px; z-index:101; margin-left:auto;
+    }
+    .vinyl-disc {
+      width:40px; height:40px; border-radius:50%; cursor:pointer;
+      position:relative; flex-shrink:0;
+      background:radial-gradient(circle at 30% 30%, #333 0%, #1a1a1a 60%, #0d0d0d 100%);
+      box-shadow:0 2px 8px rgba(0,0,0,0.15), 0 0 0 1px rgba(255,255,255,0.05);
+      transition:transform 0.6s var(--ease-hover), box-shadow 0.6s var(--ease-hover), opacity 0.4s;
+      animation:vinylSpin 3s linear infinite;
+    }
+    .vinyl-disc::before {
+      content:''; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+      width:14px; height:14px; border-radius:50%;
+      background:radial-gradient(circle, #c94b3a 0%, #8b1a1a 100%);
+      box-shadow:0 0 0 1.5px rgba(255,255,255,0.1);
+    }
+    .vinyl-disc::after {
+      content:''; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+      width:3px; height:3px; border-radius:50%; background:#fff; z-index:1;
+    }
+    /* 高光弧线 */
+    .vinyl-shine {
+      position:absolute; top:4px; left:25%; width:50%; height:30%;
+      background:linear-gradient(180deg, rgba(255,255,255,0.12) 0%, transparent 100%);
+      border-radius:50%; pointer-events:none;
+      transform:rotate(-15deg);
+    }
+    .vinyl-disc:hover {
+      transform:scale(1.08);
+      box-shadow:0 4px 20px rgba(200,160,120,0.3), 0 0 0 1px rgba(255,255,255,0.08);
+    }
+    /* 暂停状态 */
+    .vinyl-disc.paused {
+      animation-play-state:paused; opacity:0.5;
+    }
+    /* 音乐提示 */
+    .vinyl-hint {
+      font-size:9px; color:var(--sage); letter-spacing:0.08em;
+      opacity:0; transition:opacity 0.6s;
+      white-space:nowrap; font-weight:300;
+    }
+    .vinyl-hint.show { opacity:0.7; }
+    @keyframes vinylSpin {
+      from { transform:rotate(0deg); }
+      to { transform:rotate(360deg); }
+    }
+
+    .nav-links { display:flex; list-style:none; gap:36px; align-items:center; margin-left:48px; }
+    .nav-links a {
+      font-size:11px; font-weight:400; letter-spacing:0.14em; text-transform:uppercase;
+      color:var(--link); position:relative; padding:6px 0;
+      transition:color 0.6s var(--ease-hover);
+    }
+    .nav-links a::after {
+      content:''; position:absolute; bottom:0; left:0; width:0; height:1.5px;
+      background:var(--accent); transition:width 0.8s var(--ease-hover);
+    }
+    .nav-links a:hover { color:var(--accent); }
+    .nav-links a:hover::after { width:100%; }
+
+    /* ── Work dropdown sub-nav ── */
+    .nav-dropdown { position:relative; }
+    .nav-dropdown > a { display:flex; align-items:center; gap:4px; }
+    .nav-dropdown > a::before { content:'·'; color:var(--accent); font-size:14px; margin-right:2px; }
+    /* Invisible bridge to prevent hover gap */
+    .nav-dropdown::after {
+      content:''; position:absolute; top:100%; left:0; right:0;
+      height:12px; pointer-events:none;
+    }
+    .nav-sub {
+      position:absolute; top:calc(100% + 4px); left:50%; transform:translateX(-50%);
+      background:rgba(252,250,245,0.96); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
+      border:1px solid var(--border); border-radius:12px;
+      padding:8px 0; min-width:180px;
+      display:flex; flex-direction:column; gap:0;
+      opacity:0; pointer-events:none;
+      transition:opacity 0.25s var(--ease), transform 0.25s var(--ease);
+      box-shadow:0 12px 40px rgba(28,28,28,0.06);
+      transform:translateX(-50%) translateY(-4px);
+    }
+    .nav-dropdown:hover .nav-sub,
+    .nav-sub.show { opacity:1; pointer-events:auto; transform:translateX(-50%) translateY(0); }
+    .nav-sub a {
+      display:block; padding:10px 22px; font-size:10.5px !important;
+      letter-spacing:0.08em; white-space:nowrap; cursor:pointer;
+      color:var(--muted) !important; text-transform:none !important;
+      transition:all 0.2s; position:relative; z-index:1;
+    }
+    .nav-sub a::after { display:none !important; }
+    .nav-sub a:hover { color:var(--accent) !important; background:rgba(178,139,94,0.04); }
+
+    .nav-burger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:4px; background:none; border:none; z-index:101; }
+    .nav-burger span { display:block; width:22px; height:1.5px; background:var(--text); transition:all 0.5s var(--ease); }
+    .nav-burger.on span:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
+    .nav-burger.on span:nth-child(2) { opacity:0; }
+    .nav-burger.on span:nth-child(3) { transform:translateY(-6.5px) rotate(-45deg); }
+
+    .menu-mob {
+      position:fixed; inset:0 0 0 auto; width:100%; max-width:380px; z-index:99;
+      background:rgba(252,250,245,0.96); backdrop-filter:blur(30px);
+      display:flex; flex-direction:column; align-items:center; justify-content:center; gap:36px;
+      transform:translateX(100%); transition:transform 0.7s var(--ease);
+    }
+    .menu-mob.on { transform:translateX(0); }
+    .menu-mob a {
+      font-family:var(--serif); font-size:28px; color:var(--text);
+      opacity:0; transform:translateY(16px); transition:all 0.6s var(--ease);
+    }
+    .menu-mob a.mob-sub {
+      font-family:var(--sans); font-size:13px; color:var(--faint);
+      font-weight:300; letter-spacing:0.06em;
+      margin-top:-20px;
+    }
+    .menu-mob.on a { opacity:1; transform:translateY(0); }
+    .menu-mob.on a:nth-child(1){transition-delay:0.04s}
+    .menu-mob.on a:nth-child(2){transition-delay:0.08s}
+    .menu-mob.on a:nth-child(3){transition-delay:0.12s}
+    .menu-mob.on a:nth-child(4){transition-delay:0.16s}
+    .menu-mob.on a:nth-child(5){transition-delay:0.20s}
+    .menu-mob.on a:nth-child(6){transition-delay:0.24s}
+    .menu-mob.on a:nth-child(7){transition-delay:0.28s}
+    .menu-mob.on a:nth-child(8){transition-delay:0.32s}
+    .menu-mob.on a:nth-child(9){transition-delay:0.36s}
+    .menu-mob.on a:nth-child(10){transition-delay:0.40s}
+    .menu-mob.on a:nth-child(11){transition-delay:0.44s}
+    .menu-overlay { position:fixed; inset:0; z-index:98; background:rgba(0,0,0,0.18); opacity:0; pointer-events:none; transition:opacity 0.6s var(--ease); }
+    .menu-overlay.on { opacity:1; pointer-events:auto; }
+
+    /* ── HERO ── */
+    .hero {
+      position:relative; min-height:100vh; min-height:100dvh;
+      display:flex; align-items:center; justify-content:center; text-align:center;
+      padding:120px 32px 80px; overflow:hidden;
+      background-color:#fcfdfc;
+      background-image:radial-gradient(ellipse 100% 90% at 50% 50%, rgba(185,210,185,0.4) 0%, rgba(195,215,195,0.22) 30%, rgba(210,225,210,0.08) 55%, transparent 100%);
+    }
+    .hero-glow {
+      position:fixed; pointer-events:none; width:350px; height:350px; border-radius:50%; z-index:0;
+      background:radial-gradient(circle, rgba(181,196,177,0.35) 0%, rgba(200,210,195,0.15) 35%, transparent 70%);
+      transform:translate(-50%,-50%); will-change:left,top; filter:blur(30px);
+    }
+    /* ── Hero geometric decoration ── */
+    .hero-geo {
+      position:absolute; pointer-events:none; z-index:0;
+      border:1px solid rgba(212,223,208,0.2);
+      border-radius:50%;
+    }
+    .hero-geo.g1 {
+      width:280px; height:280px; bottom:-60px; right:-60px;
+      border-color:rgba(0,0,0,0.05);
+    }
+    .hero-geo.g2 {
+      width:120px; height:120px; top:10%; left:-40px;
+      border-color:rgba(0,0,0,0.04);
+    }
+    /* ── 分隔符：极细线 ── */
+    .sec-divider {
+      width:40px; height:1px;
+      background:rgba(0,0,0,0.1);
+      margin:0 auto var(--gap); border:none;
+    }
+
+    /* ── L形角标（右下） ── */
+    .corner-mark {
+      position:fixed; bottom:24px; right:24px; z-index:50; pointer-events:none;
+      width:40px; height:40px;
+      border-right:1px solid rgba(156,153,148,0.2);
+      border-bottom:1px solid rgba(156,153,148,0.2);
+    }
+
+    /* ── Drop Cap ── */
+    .drop-cap::first-letter {
+      float:left; font-family:var(--serif); font-size:4rem; line-height:0.8;
+      color:var(--terracotta); padding-right:12px; padding-top:6px;
+      font-weight:400;
+    }
+
+    /* ── 引用样式 ── */
+    blockquote.quote, .testimonial-card blockquote {
+      border-left:2px solid var(--sage) !important;
+      font-style:italic; padding-left:24px;
+    }
+    .hero-content { position:relative; z-index:1; max-width:760px; }
+    .hero-icon {
+      font-size:12px; color:var(--accent); margin-bottom:32px;
+      display:block; letter-spacing:0.35em; opacity:0.55;
+    }
+    .hero-tag {
+      font-family:var(--sans); font-size:10px; font-weight:400; letter-spacing:0.3em;
+      text-transform:uppercase; color:var(--accent); margin-bottom:36px; opacity:0.85;
+    }
+    .hero h1 {
+      font-family:var(--serif); font-weight:500; font-size:clamp(44px, 7vw, 84px);
+      line-height:1.12; color:#353a40; margin-bottom:32px; letter-spacing:0.08em;
+    }
+    .hero h1 em { font-style:italic; color:var(--accent); }
+    .hero .lead {
+      font-size:clamp(15px, 1.8vw, 18px); font-weight:400; color:var(--muted);
+      line-height:1.9; max-width:480px; margin:0 auto 44px; opacity:0.85;
+    }
+    .hero-keys { display:flex; justify-content:center; gap:14px; flex-wrap:wrap; }
+    .hero-keys span {
+      font-size:11px; letter-spacing:0.1em; color:var(--faint);
+      border:1px solid var(--border); border-radius:100px; padding:7px 18px;
+      background:rgba(255,255,255,0.4);
+    }
+    .scroll-hint {
+      position:absolute; bottom:44px; left:50%; transform:translateX(-50%);
+      display:flex; flex-direction:column; align-items:center; gap:8px;
+      opacity:0.5; animation:sf 2.4s ease-in-out infinite;
+    }
+    .scroll-hint span { font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--faint); }
+    .scroll-hint .bar { width:1px; height:28px; background:var(--faint); position:relative; overflow:hidden; }
+    .scroll-hint .bar::after {
+      content:''; position:absolute; top:-100%; left:0; width:100%; height:100%;
+      background:var(--accent); animation:sl 2.4s ease-in-out infinite;
+    }
+    @keyframes sf { 0%,100%{opacity:0.35} 50%{opacity:0.85} }
+    @keyframes sl { 0%{top:-100%} 50%{top:100%} 100%{top:100%} }
+
+    /* ── LAYOUT: Container & Sections ── */
+    .container, .sec-inner { max-width:1100px; margin:0 auto; padding:0 8%; }
+    .sec { padding:var(--gap) 0; }
+    .sec-alt { background:var(--bg-alt); }
+    /* 板块交替背景 */
+    #work { background:#fafafa; }
+    #capabilities { background:#fff; }
+    #philosophy { background:#fafafa; }
+    #recognition { background:#fff; }
+    #testimonials { background:#fafafa; }
+    #about { background:#fff; }
+    #contact { background:#fafafa; }
+    .sec-head { text-align:center; margin-bottom:var(--gap); }
+    .sec-head .eyebrow {
+      font-size:10px; font-weight:400; letter-spacing:0.22em; text-transform:uppercase;
+      color:var(--accent); margin-bottom:22px; opacity:0.8;
+    }
+    .sec-head-icon {
+      display:block; color:var(--accent); font-size:12px; margin-bottom:18px;
+      letter-spacing:0.2em; opacity:0.6;
+    }
+    .sec-head h2 {
+      font-family:var(--serif); font-size:clamp(32px, 4.5vw, 48px); font-weight:300;
+      color:var(--text); margin-bottom:2.5rem; letter-spacing:0.1em; line-height:1.2;
+    }
+    .sec-head h3 { margin-bottom:1.2rem; font-weight:300; letter-spacing:0.1em; }
+    .sec-head p { color:var(--muted); font-weight:300; max-width:550px; margin:0 auto; font-size:15px; line-height:1.95; }
+
+    /* 卡片上隐藏图片轮播，点开弹窗后查看 */
+    .stagger > .proj>.proj-info .sp-gallery { display:none; }
+
+    /* ── Section divider: ultra-thin gradient line ── */
+    .sec-divider {
+      width:60px; height:1px;
+      background:linear-gradient(90deg, transparent, rgba(184,160,136,0.3), rgba(156,175,154,0.25), transparent);
+      margin:0 auto var(--gap); border:none;
+    }
+    .sec-divider.top { margin:var(--gap-sm) auto; }
+
+    /* ── PROJECT CARDS ── */
+    .proj {
+      display:grid; grid-template-columns:1fr 1fr; gap:clamp(48px, 9vw, 96px);
+      align-items:center; margin-bottom:var(--gap);
+      border-radius:0;
+      border:1px solid var(--border);
+      background:var(--card-grad);
+      padding:clamp(28px, 4vw, 48px);
+      box-shadow:var(--shadow-sm);
+      transition:transform 0.6s var(--ease-hover), box-shadow 0.6s var(--ease-hover), border-color 0.6s var(--ease-hover);
+      cursor:pointer;
+    }
+    .proj:last-child { margin-bottom:0; }
+    .proj:hover {
+      transform:translateY(-4px) scale(1.005);
+      box-shadow:var(--shadow-lg);
+      border-color:rgba(184,160,136,0.2);
+    }
+    .proj.rev .proj-img { order:2; }
+    .proj.rev .proj-info { order:1; }
+    .proj-img {
+      position:relative; overflow:hidden;
+      aspect-ratio:4/5; background:var(--bg-alt);
+      border-radius:0;
+      box-shadow:0 2px 16px rgba(28,28,28,0.03), 0 1px 3px rgba(178,139,94,0.04);
+    }
+    .proj-img img {
+      width:100%; height:100%; object-fit:cover;
+      border-radius:0;
+      transition:transform 1.6s var(--ease), filter 1.6s var(--ease);
+    }
+    .proj-img:hover img { transform:scale(1.05); filter:brightness(1.04) contrast(1.02); }
+
+    .proj { position:relative; overflow:hidden; }
+    /* 卡片顶部色带 */
+    .proj::before {
+      content:''; position:absolute; top:0; left:0; right:0;
+      height:2px; z-index:1;
+      background:var(--sage);
+    }
+    .proj:nth-child(1)::before { background:var(--accent); }
+    .proj:nth-child(2)::before { background:var(--sage); }
+    .proj:nth-child(3)::before { background:var(--terracotta); }
+    .proj:nth-child(4)::before { background:var(--accent); }
+    .proj-img::after {
+      content:''; position:absolute; inset:0;
+      background:linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.02));
+      pointer-events:none; transition:opacity 0.6s var(--ease);
+    }
+    .proj-thumbs { display:grid; grid-template-columns:repeat(3,1fr); gap:6px; margin-top:8px; }
+    .proj-thumbs .thumb-wrap {
+      border-radius:6px; overflow:hidden;
+      box-shadow:0 2px 8px rgba(0,0,0,0.04);
+    }
+    .proj-thumbs img { width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:6px; transition:opacity 0.3s, transform 0.4s var(--ease); }
+    .proj-thumbs .thumb-wrap:hover img { opacity:0.85; transform:scale(1.04); }
+
+    .proj-info { display:flex; flex-direction:column; gap:14px; }
+    .proj-num { font-size:10px; font-weight:400; letter-spacing:0.2em; color:var(--accent); text-transform:uppercase; }
+    .proj:hover .proj-num { color:var(--text); }
+    .proj-info h3 { font-family:var(--serif); font-size:clamp(24px, 3.2vw, 38px); font-weight:300; color:var(--text); line-height:1.2; letter-spacing:0.08em; }
+    .proj-info h3 small { display:block; font-family:var(--serif); font-size:0.55em; font-weight:400; font-style:italic; color:var(--faint); margin-top:4px; letter-spacing:0.04em; }
+    .proj-info .proj-desc { color:var(--muted); font-weight:400; line-height:1.9; max-width:420px; font-size:14px; }
+    .proj-stats { display:flex; gap:28px; padding:16px 0; border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+    .proj-stats div strong { font-family:var(--serif); font-size:26px; font-weight:400; color:var(--accent); display:block; line-height:1; }
+    .proj-stats div span { font-size:0.85rem; color:var(--faint); display:block; margin-top:2px; letter-spacing:0.03em; }
+    .proj-tags { display:flex; flex-wrap:wrap; gap:8px; }
+    .proj-tags span { font-size:0.85rem; letter-spacing:0.03em; color:var(--faint); border:1px solid var(--border); border-radius:100px; padding:5px 14px; background:rgba(255,255,255,0.5); }
+    .proj-view-more {
+      font-size:11px; letter-spacing:0.12em; color:var(--accent);
+      display:flex; align-items:center; gap:6px; margin-top:4px;
+      text-transform:uppercase; font-weight:400;
+    }
+    .proj-view-more::after { content:'→'; transition:transform 0.4s var(--ease); }
+    .proj:hover .proj-view-more::after { transform:translateX(4px); }
+
+    /* ── CAPABILITY CARDS ── */
+    .caps { display:grid; grid-template-columns:repeat(3,1fr); gap:3rem; }
+    .cap {
+      border-radius:16px; border:1px solid var(--border);
+      background:var(--card-grad);
+      padding:2.5rem;
+      box-shadow:var(--shadow-sm);
+      transition:transform 0.6s var(--ease-hover), box-shadow 0.6s var(--ease-hover), border-color 0.6s var(--ease-hover);
+      cursor:pointer;
+    }
+    .cap:hover { transform:translateY(-4px) scale(1.005); box-shadow:var(--shadow-lg); border-color:rgba(184,160,136,0.2); }
+    .cap h3 { font-family:var(--serif); font-size:22px; font-weight:400; color:var(--text); margin-bottom:1.2rem; letter-spacing:0.08em; }
+    .cap:hover h3 { color:var(--accent); }
+    .cap .en { font-family:var(--serif); font-size:13px; font-style:italic; color:var(--faint); margin-bottom:14px; letter-spacing:0.04em; }
+    .cap .cap-desc { font-size:13.5px; color:var(--muted); font-weight:400; line-height:1.9; margin-bottom:12px; }
+    .cap-img {
+      overflow:hidden; aspect-ratio:4/3; background:var(--bg);
+      margin-bottom:18px; border-radius:8px;
+      box-shadow:0 3px 16px rgba(0,0,0,0.04);
+    }
+    .cap-img img { width:100%; height:100%; object-fit:cover; border-radius:8px; transition:transform 1.2s var(--ease); }
+    .cap-img:hover img { transform:scale(1.04); }
+    .cap-view-more {
+      font-size:11px; letter-spacing:0.1em; color:var(--accent);
+      display:flex; align-items:center; gap:4px; text-transform:uppercase;
+    }
+    .cap-view-more::after { content:'→'; transition:transform 0.4s var(--ease); }
+    .cap:hover .cap-view-more::after { transform:translateX(3px); }
+
+    .photo-row { display:grid; grid-template-columns:repeat(3,1fr); gap:6px; margin-top:16px; }
+    .photo-row .pw { border-radius:6px; overflow:hidden; aspect-ratio:1/1; box-shadow:0 2px 10px rgba(0,0,0,0.04); }
+    .photo-row img { width:100%; height:100%; object-fit:cover; border-radius:6px; transition:transform 0.6s var(--ease); cursor:pointer; }
+    .photo-row .pw:hover img { transform:scale(1.08); }
+
+    /* ── Image captions ── */
+    .img-caption {
+      font-size:0.8rem; color:var(--faint); text-align:center;
+      margin-top:8px; font-style:italic; letter-spacing:0.03em;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid { display:grid; grid-template-columns:5fr 7fr; gap:clamp(48px, 9vw, 96px); align-items:start; }
+    .about-pic {
+      aspect-ratio:3/4; overflow:hidden; background:var(--bg-alt);
+      border-radius:14px; box-shadow:0 2px 16px rgba(28,28,28,0.03), 0 1px 3px rgba(178,139,94,0.04);
+    }
+    .about-pic img { width:100%; height:100%; object-fit:cover; border-radius:14px; filter:saturate(0.92) contrast(0.96); transition:filter 1.4s var(--ease), transform 1.2s var(--ease); }
+    .about-pic:hover img { filter:saturate(1) contrast(1); transform:scale(1.03); }
+    .about-pic .img-caption { margin-top:10px; text-align:left; }
+    .about-text p { color:var(--muted); font-weight:400; line-height:1.9; margin-bottom:16px; font-size:14px; max-width:500px; }
+    .about-text .intro { font-size:17px; color:var(--text); font-weight:400; line-height:1.9; margin-bottom:20px; }
+    .skill-row { display:flex; flex-wrap:wrap; gap:10px 16px; margin-top:28px; padding-top:28px; border-top:1px solid var(--border); }
+    .skill-row span { font-size:12.5px; color:var(--muted); display:flex; align-items:center; gap:8px; }
+    .skill-row span::before { content:''; width:5px; height:5px; border-radius:50%; background:var(--accent); flex-shrink:0; }
+
+    .edu-row { display:grid; grid-template-columns:1fr 1fr; gap:clamp(28px,5vw,56px); margin-top:var(--gap); padding-top:48px; border-top:1px solid var(--border); }
+    .edu-row .label { font-size:10.5px; font-weight:400; letter-spacing:0.2em; text-transform:uppercase; color:var(--accent); margin-bottom:16px; }
+    .edu-row .item { margin-bottom:20px; }
+    .edu-row .item strong { display:block; font-size:15px; font-weight:500; color:var(--text); margin-bottom:2px; }
+    .edu-row .item span { font-size:13.5px; color:var(--faint); }
+
+    .brands { display:flex; justify-content:center; flex-wrap:wrap; gap:clamp(28px,5vw,52px); margin-top:var(--gap); padding-top:48px; border-top:1px solid var(--border); }
+    .brands span { font-family:var(--serif); font-size:20px; color:var(--faint); opacity:0.45; letter-spacing:0.06em; transition:all 0.5s var(--ease); }
+    .brands span:hover { opacity:0.8; color:var(--accent); }
+
+    /* ── Work Timeline ── */
+    .timeline { position:relative; padding-left:24px; }
+    .timeline::before {
+      content:''; position:absolute; left:7px; top:4px; bottom:4px;
+      width:1px; background:var(--border);
+    }
+    .tl-item { position:relative; margin-bottom:18px; padding-left:28px; }
+    .tl-item::before {
+      content:''; position:absolute; left:-20px; top:6px;
+      width:7px; height:7px; border-radius:50%;
+      background:var(--accent); border:2px solid var(--bg);
+    }
+    .tl-date { font-size:11px; font-weight:400; letter-spacing:0.1em; color:var(--accent); margin-bottom:2px; }
+    .tl-role { font-size:13.5px; font-weight:500; color:var(--text); display:block; }
+    .tl-company { font-size:12px; color:var(--faint); }
+    .tl-en { font-size:11px; font-style:italic; color:var(--faint); display:block; }
+
+    /* ── CONTACT ── */
+    .contact { text-align:center; max-width:600px; margin:0 auto; }
+    .contact h2 { font-family:var(--serif); font-size:clamp(36px, 5.5vw, 60px); font-weight:300; color:var(--text); margin-bottom:12px; letter-spacing:0.08em; }
+    .contact .sub { color:var(--muted); font-weight:400; margin-bottom:36px; font-size:16px; line-height:1.9; }
+    .contact a.mail {
+      display:inline-block; font-family:var(--serif); font-size:24px; color:var(--accent);
+      border-bottom:1px solid var(--accent-l); padding-bottom:4px; margin-bottom:40px;
+      transition:all 0.4s var(--ease);
+    }
+    .contact a.mail:hover { color:var(--text); border-color:var(--text); }
+    .social { display:flex; justify-content:center; gap:32px; margin-bottom:40px; }
+    .social a { font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--faint); transition:color 0.3s; }
+    .social a:hover { color:var(--accent); }
+    .contact-details {
+      display:flex; justify-content:center; gap:28px; flex-wrap:wrap;
+      margin-bottom:32px; margin-top:-28px;
+    }
+    .contact-details span {
+      font-size:12px; color:var(--muted); font-weight:300; letter-spacing:0.03em;
+    }
+    .footer { padding:28px 0; border-top:1px solid var(--border); }
+    .footer p { font-size:11px; color:var(--faint); letter-spacing:0.04em; text-align:center; }
+
+    /* ── ANIMATIONS ── */
+    .fade { opacity:0; transform:translateY(30px); transition:opacity 0.8s var(--ease), transform 0.8s var(--ease); }
+    .fade.in { opacity:1; transform:translateY(0); }
+    .stagger > .fade:nth-child(1){transition-delay:0s}
+    .stagger > .fade:nth-child(2){transition-delay:0.12s}
+    .stagger > .fade:nth-child(3){transition-delay:0.24s}
+    .stagger > .fade:nth-child(4){transition-delay:0.36s}
+
+    /* ── 页面加载渐显 ── */
+    body { opacity:0; animation:bodyIn 0.8s var(--ease) 0.1s forwards; }
+    @keyframes bodyIn { to{opacity:1} }
+
+    /* ── 导航高亮 ── */
+    .nav-links a.nav-active { color:var(--accent); }
+    .nav-links a.nav-active::after { width:100%; background:var(--sage); }
+
+    /* ── 数字递增 ── */
+    .count-up { display:inline-block; }
+
+    /* ── 回到顶部按钮 ── */
+    .back-to-top {
+      position:fixed; bottom:40px; right:40px; z-index:90;
+      width:44px; height:44px; border-radius:50%;
+      background:rgba(252,249,245,0.7); border:1.5px solid rgba(184,160,136,0.25);
+      backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+      box-shadow:var(--shadow-sm);
+      display:flex; align-items:center; justify-content:center;
+      cursor:pointer; opacity:0; pointer-events:none;
+      transform:translateY(16px);
+      transition:all 0.6s var(--ease-hover);
+      font-size:18px; color:var(--accent); font-weight:300;
+    }
+    .back-to-top.visible { opacity:1; pointer-events:auto; transform:translateY(0); }
+    .back-to-top:hover {
+      background:var(--accent); color:#FCF9F5; border-color:var(--accent);
+      box-shadow:0 8px 24px rgba(184,160,136,0.18); transform:translateY(-3px);
+    }
+
+    /* ── 增强卡片光晕 ── */
+    .proj, .cap, .testimonial-card {
+      position:relative; overflow:hidden;
+    }
+    .proj::after, .cap::after {
+      content:''; position:absolute; top:-50%; left:-50%; width:200%; height:200%;
+      background:radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(184,160,136,0.05) 0%, transparent 60%);
+      pointer-events:none; opacity:0; transition:opacity 0.8s var(--ease-hover);
+    }
+    .proj:hover::after, .cap:hover::after { opacity:1; }
+
+    /* ── Contact 区块装饰圆 ── */
+    .contact-deco {
+      position:absolute; pointer-events:none; z-index:0;
+      width:300px; height:300px; border-radius:50%;
+      border:1px solid rgba(212,223,208,0.15);
+      top:50%; left:50%; transform:translate(-50%,-50%);
+      opacity:0.5;
+    }
+
+    /* ── 手绘风格装饰曲线 ── */
+    .hand-drawn-line {
+      width:100%; max-width:200px; height:18px; margin:0 auto 48px;
+      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 18' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5 13 Q 30 4, 50 9 T 100 8 T 145 11 T 195 7' fill='none' stroke='%23D4DFD0' stroke-width='0.6' stroke-opacity='0.5'/%3E%3C/svg%3E") no-repeat center;
+      background-size:contain;
+      opacity:0.6;
+    }
+
+    /* ── 页脚装饰分隔符 ── */
+    .footer-divider-dots {
+      text-align:center; margin-bottom:20px;
+      font-size:6px; letter-spacing:8px;
+      color:rgba(212,223,208,0.5);
+      user-select:none;
+    }
+
+    /* ── Work sub-section indicator ── */
+    .sec-work-sub {
+      position:relative;
+    }
+    #cat-graphic, #cat-brand, #cat-copy, #cat-photo { background:#fff; }
+    .sec-work-sub::before {
+      content:'';
+      position:absolute; left:clamp(20px,5vw,48px); top:var(--gap); bottom:var(--gap);
+      width:1px; background:rgba(178,139,94,0.12);
+      pointer-events:none;
+    }
+    .sec-work-sub .sec-head h2 {
+      font-size:clamp(26px,4vw,40px);
+    }
+
+    /* ── Sub-project cards (inside category sections) ── */
+    .sub-projects {
+      display:grid; grid-template-columns:1fr 1fr;
+      gap:clamp(24px,3vw,40px); margin-top:48px;
+    }
+    .sp-card {
+      display:flex; gap:24px; align-items:flex-start;
+      border-radius:12px; border:1px solid var(--border);
+      background:linear-gradient(135deg, #fff 0%, #FAFAF8 100%);
+      padding:28px; box-shadow:var(--shadow-sm);
+      transition:transform 0.6s var(--ease-hover), box-shadow 0.6s var(--ease-hover);
+      cursor:default;
+    }
+    .sp-card.sp-clickable { cursor:pointer; }
+    .sp-card:hover { transform:translateY(-3px) scale(1.005); box-shadow:var(--shadow-md); }
+    .sp-thumb {
+      width:100px; height:100px; flex-shrink:0; border-radius:8px;
+      overflow:hidden; background:var(--bg-alt);
+    }
+    .sp-thumb img {
+      width:100%; height:100%; object-fit:cover; border-radius:8px;
+      box-shadow:0 2px 8px rgba(28,28,28,0.04);
+    }
+    /* Icon placeholder for cards without images */
+    .sp-thumb.sp-icon {
+      display:flex; align-items:center; justify-content:center;
+      font-size:36px; background:linear-gradient(135deg, rgba(178,139,94,0.06), rgba(212,192,160,0.04));
+      border:1px dashed var(--border);
+    }
+    .sp-info { flex:1; display:flex; flex-direction:column; gap:6px; }
+    .sp-info h4 {
+      font-family:var(--serif); font-size:17px; font-weight:400; color:var(--text);
+      letter-spacing:0.04em;
+    }
+    .sp-info .sp-num {
+      font-size:0.85rem; font-weight:400; letter-spacing:0.03em;
+      color:var(--accent); text-transform:uppercase;
+    }
+    .sp-info .sp-desc {
+      font-size:0.85rem; color:var(--muted); line-height:1.9; font-weight:400;
+      letter-spacing:0.03em;
+    }
+    .sp-info .sp-meta {
+      display:flex; gap:16px; margin-top:4px;
+    }
+    .sp-info .sp-meta span {
+      font-size:0.85rem; color:var(--faint);
+      display:flex; align-items:center; gap:4px;
+      letter-spacing:0.03em;
+    }
+    .sp-info .sp-meta span::before {
+      content:''; width:4px; height:4px; border-radius:50%;
+      background:var(--accent-l); flex-shrink:0;
+    }
+    /* Expanded sub-project detail — full width below card */
+    .sp-expanded {
+      display:none; padding:20px 0 0; margin-top:12px;
+      border-top:1px solid var(--border);
+      width:100%;
+    }
+    .sp-card.expanded .sp-expanded { display:block; }
+    .sp-card.expanded { border-color:var(--accent-l); box-shadow:var(--shadow-md); flex-direction:column; }
+    /* Carousel in expanded view — large images, swipeable */
+    .sp-gallery {
+      position:relative; margin-top:16px;
+      overflow:hidden; border-radius:6px;
+      background:var(--bg-alt);
+    }
+    .sp-gallery-track {
+      display:flex; transition:transform 0.45s var(--ease);
+    }
+    .sp-gallery-track div {
+      flex:0 0 100%; aspect-ratio:3/2;
+    }
+    .sp-gallery-track img {
+      width:100%; height:100%; object-fit:contain;
+      cursor:pointer; background:var(--bg-alt);
+    }
+    /* Arrow buttons */
+    .sp-gallery-arrow {
+      position:absolute; top:50%; transform:translateY(-50%);
+      width:32px; height:32px; border-radius:50%;
+      background:rgba(255,255,255,0.85); border:1px solid var(--border);
+      display:flex; align-items:center; justify-content:center;
+      cursor:pointer; z-index:2; font-size:14px; color:var(--text);
+      transition:all 0.3s; opacity:0;
+      box-shadow:0 2px 8px rgba(0,0,0,0.06);
+    }
+    .sp-gallery:hover .sp-gallery-arrow { opacity:1; }
+    .sp-gallery-arrow.prev { left:8px; }
+    .sp-gallery-arrow.next { right:8px; }
+    .sp-gallery-arrow:hover { background:#fff; color:var(--accent); }
+    /* Dots */
+    .sp-gallery-dots {
+      position:absolute; bottom:10px; left:50%; transform:translateX(-50%);
+      display:flex; gap:6px; z-index:2;
+    }
+    .sp-gallery-dots button {
+      width:6px; height:6px; border-radius:50%; border:none;
+      background:rgba(255,255,255,0.5); cursor:pointer; padding:0;
+      transition:all 0.3s;
+    }
+    .sp-gallery-dots button.active { background:#fff; width:16px; border-radius:3px; }
+
+    /* ── WORK CATEGORY FILTERS ── */
+    .cat-filters {
+      display:flex; justify-content:center; flex-wrap:wrap; gap:12px;
+      margin-top:32px; margin-bottom:calc(var(--gap)*0.6);
+    }
+    .cat-pill {
+      font-family:var(--sans); font-size:11px; font-weight:400;
+      letter-spacing:0.1em; text-transform:uppercase;
+      color:var(--muted); background:transparent;
+      border:1px solid var(--border); border-radius:100px;
+      padding:9px 22px; cursor:pointer;
+      transition:all 0.4s var(--ease);
+      text-decoration:none; display:inline-block;
+    }
+    .cat-pill:hover, .cat-pill.on {
+      color:var(--accent); border-color:var(--accent-l);
+      background:rgba(178,139,94,0.04);
+    }
+
+    /* ── DESIGN PHILOSOPHY ── */
+    .philosophy-grid {
+      display:grid; grid-template-columns:repeat(3,1fr);
+      gap:clamp(28px,4vw,48px);
+    }
+    .phil-card {
+      padding:2.5rem;
+      border-radius:14px; border:1px solid var(--border);
+      background:var(--card-grad); box-shadow:var(--shadow-sm);
+      transition:transform 0.6s var(--ease-hover), box-shadow 0.6s var(--ease-hover);
+    }
+    .phil-card:hover { transform:translateY(-4px) scale(1.005); box-shadow:var(--shadow-lg); }
+    .phil-num {
+      font-family:var(--serif); font-size:40px; font-weight:400;
+      color:var(--accent); opacity:0.3; line-height:1; display:block; margin-bottom:12px;
+      letter-spacing:0.08em;
+    }
+    .phil-card h3 { font-family:var(--serif); font-size:20px; font-weight:400; color:var(--text); margin-bottom:1.2rem; letter-spacing:0.08em; }
+    .phil-en { font-size:12px; font-style:italic; color:var(--faint); margin-bottom:12px; }
+    .phil-card p { font-size:13.5px; color:var(--muted); line-height:1.9; font-weight:400; }
+
+    /* ── RECOGNITION & CLIENTS ── */
+    .recognition { text-align:center; }
+    .client-logos {
+      display:flex; justify-content:center; align-items:center;
+      flex-wrap:wrap; gap:clamp(28px,5vw,52px);
+      margin-top:48px;
+    }
+    .client-logo {
+      width:100px; height:100px; border-radius:50%;
+      background:var(--bg-alt); border:1px solid var(--border);
+      display:flex; align-items:center; justify-content:center;
+      filter:grayscale(1); opacity:0.5;
+      transition:all 0.5s var(--ease);
+      font-family:var(--serif); font-size:15px; color:var(--faint);
+      letter-spacing:0.06em;
+    }
+    .client-logo:hover {
+      filter:grayscale(0); opacity:1; border-color:var(--accent-l);
+      color:var(--accent); box-shadow:0 8px 32px rgba(178,139,94,0.08);
+    }
+    .client-logo.rect {
+      width:130px; height:60px; border-radius:12px;
+    }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials-grid {
+      display:grid; grid-template-columns:1fr 1fr;
+      gap:clamp(32px,5vw,56px); max-width:900px; margin:0 auto;
+    }
+    .testimonial-card {
+      background:var(--card-grad); border:1px solid var(--border);
+      border-radius:16px; padding:clamp(28px,4vw,44px);
+      box-shadow:var(--shadow-sm);
+      transition:transform 0.6s var(--ease-hover), box-shadow 0.6s var(--ease-hover);
+      position:relative;
+    }
+    .testimonial-card:hover {
+      transform:translateY(-4px) scale(1.005); box-shadow:var(--shadow-md);
+    }
+    .testimonial-card .quote-icon {
+      font-family:var(--serif); font-size:48px; color:var(--accent-l);
+      line-height:1; margin-bottom:16px; opacity:0.6;
+    }
+    .testimonial-card blockquote {
+      font-family:var(--serif); font-size:16px; font-weight:400;
+      color:var(--text); line-height:1.65; margin-bottom:20px;
+      font-style:italic; padding-left:24px;
+    }
+    .testimonial-card .author {
+      display:flex; align-items:center; gap:12px;
+      padding-top:20px; border-top:1px solid var(--border);
+    }
+    .testimonial-card .author-avatar {
+      width:40px; height:40px; border-radius:50%;
+      background:var(--accent-l); flex-shrink:0;
+      display:flex; align-items:center; justify-content:center;
+      font-family:var(--serif); color:#fff; font-size:16px;
+    }
+    .testimonial-card .author strong {
+      display:block; font-size:13px; font-weight:500; color:var(--text);
+    }
+    .testimonial-card .author span {
+      font-size:11px; color:var(--faint);
+    }
+
+    /* ── NEWSLETTER ── */
+    .newsletter {
+      margin-top:40px; padding-top:36px;
+      border-top:1px solid var(--border);
+      text-align:center;
+    }
+    .newsletter h3 {
+      font-family:var(--serif); font-size:18px; font-weight:300;
+      color:var(--text); margin-bottom:8px; letter-spacing:0.08em;
+    }
+    .newsletter p { font-size:0.85rem; color:var(--faint); margin-bottom:20px; letter-spacing:0.03em; }
+    .newsletter-form {
+      display:flex; gap:10px; justify-content:center;
+      max-width:420px; margin:0 auto;
+    }
+    .newsletter-form input {
+      flex:1; font-family:var(--sans); font-size:13px; font-weight:300;
+      color:var(--text); background:#fff;
+      border:1px solid var(--border); border-radius:100px;
+      padding:12px 20px; outline:none;
+      transition:border-color 0.3s;
+    }
+    .newsletter-form input:focus { border-color:var(--accent-l); }
+    .newsletter-form input::placeholder { color:var(--faint); }
+    .newsletter-form button {
+      font-family:var(--sans); font-size:12px; font-weight:400;
+      letter-spacing:0.1em; text-transform:uppercase;
+      color:#fff; background:var(--accent);
+      border:none; border-radius:100px; padding:12px 28px;
+      cursor:pointer; white-space:nowrap;
+      transition:all 0.4s var(--ease);
+    }
+    .newsletter-form button:hover { background:var(--text); }
+
+    /* ── MODAL SYSTEM ── */
+    .modal-overlay {
+      position:fixed; inset:0; z-index:999; background:rgba(28,28,28,0.55);
+      display:flex; align-items:center; justify-content:center; padding:32px;
+      opacity:0; pointer-events:none; transition:opacity 0.5s var(--ease);
+    }
+    .modal-overlay.on { opacity:1; pointer-events:auto; }
+    .modal {
+      background:var(--bg); max-width:1060px; width:100%; max-height:88vh;
+      overflow:hidden; position:relative;
+      display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr;
+      border-radius:16px;
+      box-shadow:0 30px 80px rgba(0,0,0,0.15);
+      transform:translateY(24px); transition:transform 0.6s var(--ease);
+    }
+    .modal-overlay.on .modal { transform:translateY(0); }
+    .modal-close {
+      position:absolute; top:16px; right:20px; z-index:10;
+      background:rgba(255,255,255,0.8); border:none; cursor:pointer;
+      font-size:28px; color:var(--faint); line-height:1;
+      width:36px; height:36px; border-radius:50%;
+      transition:all 0.3s;
+    }
+    .modal-close:hover { color:var(--text); background:rgba(0,0,0,0.04); }
+
+    /* ── Modal left: single-image horizontal carousel ── */
+    .modal-gallery {
+      background:var(--bg); overflow:hidden;
+      border-radius:16px 0 0 16px;
+      position:relative; min-height:0;
+    }
+    .modal-gallery.sp-gallery {
+      display:block; margin-top:0; background:var(--bg); border-radius:16px 0 0 16px;
+    }
+    .modal-gallery .sp-gallery-track {
+      width:100%; height:100%;
+      display:flex;
+    }
+    .modal-gallery .sp-gallery-track div {
+      flex:0 0 100%; aspect-ratio:auto;
+      display:flex; align-items:center; justify-content:center;
+      padding:40px 60px;
+    }
+    .modal-gallery .sp-gallery-track img {
+      width:auto; height:auto; max-width:85%; max-height:85%; aspect-ratio:auto;
+      object-fit:contain; cursor:pointer;
+      border-radius:4px;
+      box-shadow:0 2px 16px rgba(0,0,0,0.06);
+    }
+    .modal-gallery .sp-gallery-arrow {
+      opacity:0; transition:opacity 0.3s;
+      background:rgba(255,255,255,0.9);
+    }
+    .modal-gallery:hover .sp-gallery-arrow { opacity:1; }
+    .modal-gallery .sp-gallery-arrow.prev { left:16px; }
+    .modal-gallery .sp-gallery-arrow.next { right:16px; }
+    .modal-gallery .sp-gallery-dots { bottom:24px; }
+
+    /* ── Modal right: tabbed content ── */
+    .modal-content {
+      padding:0; display:flex; flex-direction:column;
+      border-radius:0 16px 16px 0;
+      min-height:0; overflow:visible;
+    }
+    .modal-content-header {
+      padding:28px 28px 0; flex-shrink:0;
+    }
+    .modal-content-header .num { font-size:10px; letter-spacing:0.2em; color:var(--accent); text-transform:uppercase; }
+    .modal-content-header h2 { font-family:var(--serif); font-size:26px; font-weight:300; line-height:1.2; margin-bottom:2px; letter-spacing:0.08em; }
+    .modal-content-header h2 small { display:block; font-family:var(--serif); font-size:0.5em; font-style:italic; color:var(--faint); margin-top:4px; }
+    .modal-content-header .obj { font-size:13px; color:var(--muted); border-left:2px solid var(--accent-l); padding-left:14px; margin-top:10px; }
+    .modal-tab-panel p { font-size:13.5px; color:var(--muted); line-height:1.9; margin-bottom:14px; font-weight:400; }
+    .modal-content-header .obj strong { color:var(--text); font-weight:500; }
+
+    /* ── Tabs ── */
+    .modal-tabs { display:flex !important; flex-shrink:0; min-height:44px;
+      display:flex; gap:0; border-bottom:1px solid var(--border);
+      padding:0 20px; margin-top:14px; flex-shrink:0;
+      overflow-x:auto; -webkit-overflow-scrolling:touch;
+      scrollbar-width:none; 
+    }
+    .modal-tabs::-webkit-scrollbar { display:none; }
+    .modal-tab {
+      font-size:11px; font-weight:400; letter-spacing:0.08em;
+      color:var(--faint); background:none; border:none;
+      padding:12px 16px; cursor:pointer;
+      border-bottom:2px solid transparent;
+      transition:all 0.3s var(--ease);
+      white-space:nowrap; font-family:var(--sans);
+    }
+    .modal-tab:hover { color:var(--text); }
+    .modal-tab.active { color:var(--accent); border-bottom-color:var(--accent); font-weight:500; }
+
+    /* ── Tab panels ── */
+    .modal-tab-panels { flex:1; overflow-y:auto; padding:16px 28px 28px; }
+    .modal-tab-panel { display:none; }
+    .modal-tab-panel.active { display:block; }
+    .modal-tab-panel p { font-size:13.5px; color:var(--muted); line-height:1.8; margin-bottom:14px; }
+    .modal-tab-panel .highlight {
+      font-size:14px; color:var(--text); font-weight:400;
+      border-left:3px solid var(--accent); padding:8px 16px;
+      margin:16px 0; background:rgba(178,139,94,0.04);
+      border-radius:0 8px 8px 0;
+    }
+    .modal-tab-panel .stats-inline {
+      display:flex; gap:24px; flex-wrap:wrap;
+      padding:16px 0; margin:16px 0;
+      border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+    }
+    .modal-tab-panel .stats-inline strong {
+      font-family:var(--serif); font-size:28px; font-weight:500;
+      color:var(--accent); display:block; line-height:1;
+    }
+    .modal-tab-panel .stats-inline span { font-size:10.5px; color:var(--faint); }
+    .modal-tab-panel .tags { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+    .modal-tab-panel .tags span {
+      font-size:10.5px; letter-spacing:0.06em; color:var(--faint);
+      border:1px solid var(--border); border-radius:100px;
+      padding:4px 12px; background:rgba(255,255,255,0.5);
+    }
+
+    /* ── Capability detail modal ── */
+    .cap-modal {
+      max-width:860px; grid-template-columns:1fr;
+      overflow-y:auto;
+    }
+    .cap-modal .modal-content {
+      border-radius:16px;
+      min-height:0; height:100%;
+    }
+    .cap-modal .modal-content-header { text-align:center; }
+    .cap-modal .modal-tabs { display:flex !important; flex-shrink:0; min-height:44px; justify-content:center; }
+    .cap-modal .modal-tab-panels {
+      max-width:680px; margin:0 auto; width:100%;
+      overflow-y:auto; -webkit-overflow-scrolling:touch;
+    }
+
+    /* ── Capability modal: photo grid ── */
+    .cap-photo-grid {
+      display:grid; grid-template-columns:repeat(3,1fr); gap:10px;
+    }
+    .cap-photo-grid .pw {
+      border-radius:8px; overflow:hidden;
+      aspect-ratio:1/1;
+      box-shadow:0 3px 14px rgba(0,0,0,0.05);
+    }
+    .cap-photo-grid img {
+      width:100%; height:100%; object-fit:cover; cursor:pointer;
+      border-radius:8px; transition:transform 0.5s var(--ease);
+    }
+    .cap-photo-grid .pw:hover img { transform:scale(1.06); }
+
+    /* ── Capability content cards ── */
+    .cap-content-cards { display:grid; gap:14px; }
+    .cap-content-card {
+      border:1px solid var(--border); border-radius:12px;
+      padding:20px 24px; background:var(--card-grad);
+      box-shadow:var(--shadow-sm);
+    }
+    .cap-content-card h4 { font-family:var(--serif); font-size:18px; font-weight:400; color:var(--text); margin-bottom:2px; }
+    .cap-content-card .en-sub { font-size:12px; font-style:italic; color:var(--faint); margin-bottom:8px; }
+    .cap-content-card p { font-size:13px; color:var(--muted); line-height:1.7; }
+    .cap-metric {
+      display:inline-flex; align-items:baseline; gap:6px;
+      margin-top:8px; padding:6px 14px;
+      background:rgba(178,139,94,0.06); border-radius:100px;
+    }
+    .cap-metric strong { font-family:var(--serif); font-size:22px; color:var(--accent); }
+    .cap-metric span { font-size:11px; color:var(--faint); }
+
+    /* ── Lightbox ── */
+    .lb {
+      position:fixed; inset:0; z-index:300; background:rgba(28,28,28,0.9);
+      display:flex; align-items:center; justify-content:center; padding:40px;
+      opacity:0; pointer-events:none; cursor:pointer;
+      transition:opacity 0.4s var(--ease);
+    }
+    .lb.on { opacity:1; pointer-events:auto; }
+    .lb img { max-width:100%; max-height:85vh; object-fit:contain; border-radius:8px; box-shadow:0 20px 60px rgba(0,0,0,0.3); transform:scale(0.92); transition:transform 0.5s var(--ease); }
+    .lb.on img { transform:scale(1); }
+    .lb-close { position:absolute; top:20px; right:28px; color:#fff; font-size:32px; background:none; border:none; cursor:pointer; opacity:0.6; transition:opacity 0.3s; }
+    .lb-close:hover { opacity:1; }
+    .lb-caption { position:absolute; bottom:28px; left:50%; transform:translateX(-50%); color:rgba(255,255,255,0.7); font-size:0.85rem; font-style:italic; letter-spacing:0.04em; }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:1024px){
+      .nav-links{gap:16px}
+      .caps{grid-template-columns:1fr 1fr}
+      .cat-pill{padding:8px 16px; font-size:10px}
+      .nav-sub{left:0; transform:translateX(-20%) translateY(-4px); min-width:160px}
+      .nav-dropdown:hover .nav-sub,
+      .nav-sub.show{transform:translateX(-20%) translateY(0)}
+      .sec-work-sub::before{display:none}
+      #work, #capabilities, #philosophy, #recognition, #testimonials, #about, #contact,
+      #cat-graphic, #cat-brand, #cat-copy, #cat-photo { background:var(--bg); }
+      .sub-projects{grid-template-columns:1fr; gap:16px}
+      .philosophy-grid{grid-template-columns:1fr; gap:20px}
+      .sp-card{flex-direction:column; align-items:center; text-align:center; padding:18px}
+      .sp-card.expanded{align-items:stretch; text-align:left}
+      .sp-thumb{width:80px; height:80px}
+      .sp-gallery-track div{aspect-ratio:4/3}
+    }
+    @media(max-width:768px){
+      /* Nav */
+      .nav-links{display:none} .nav-burger{display:flex}
+      .nav-logo{font-size:18px}
+      .vinyl-disc{width:34px;height:34px}
+      .vinyl-hint{display:none}
+
+      /* Hero */
+      .hero-glow{width:280px;height:280px; filter:blur(24px)}
+      .hero-geo.g1{width:180px;height:180px;bottom:-40px;right:-40px}
+      .hero-geo.g2{width:100px;height:100px;top:10%;left:-40px}
+      .hero-leaf.l1{width:100px;height:140px;top:5%;right:3%}
+      .hero h1{font-size:clamp(34px,8vw,48px)}
+      .hero .lead{font-size:14px; max-width:320px}
+      .hero-keys{gap:8px}
+      .hero-keys span{font-size:10px; padding:6px 14px}
+      .hero-tag{font-size:9.5px; margin-bottom:20px}
+
+      /* Section headings */
+      .sec-head h2{font-size:clamp(26px,5vw,34px)}
+      .sec-head p{font-size:13px; max-width:360px}
+      .sec-head-icon{font-size:12px}
+      .sec-head .eyebrow{font-size:9.5px}
+      .sec-divider{width:40%}
+
+      /* Projects */
+      .proj,.proj.rev{grid-template-columns:1fr;gap:24px;padding:18px; border-radius:8px}
+      .proj.rev .proj-img{order:-1}
+      .proj-img{aspect-ratio:16/9}
+      .proj-img::before, .about-pic::before, .modal-gallery .hero-img-wrap::before{box-shadow:none}
+      .proj-info .proj-desc{max-width:100%; font-size:13px}
+      .proj-info h3{font-size:clamp(22px,4vw,28px)}
+      .proj-stats{gap:16px}
+      .proj-stats div strong{font-size:24px}
+
+      /* Category filters */
+      .cat-filters{gap:8px; margin-top:24px}
+      .cat-pill{padding:10px 18px; font-size:10px; min-height:44px; display:inline-flex; align-items:center}
+
+      /* Capabilities */
+      .caps{grid-template-columns:1fr;gap:28px}
+      .cap{padding:20px}
+      .cap h3{font-size:20px}
+      .cap .cap-desc{font-size:12.5px}
+      .photo-row{grid-template-columns:repeat(2,1fr)}
+
+      /* Recognition */
+      .client-logos{gap:18px}
+      .client-logo{width:72px;height:72px;font-size:11px}
+      .client-logo.rect{width:90px;height:44px;font-size:10px; border-radius:10px}
+
+      /* Testimonials */
+      .testimonials-grid{grid-template-columns:1fr;gap:24px;max-width:440px}
+      .testimonial-card{padding:24px}
+      .testimonial-card blockquote{font-size:14px}
+
+      /* About */
+      .about-grid{grid-template-columns:1fr;gap:32px}
+      .about-pic{aspect-ratio:4/3;max-width:320px;margin:0 auto}
+      .about-text p{max-width:100%; font-size:13px}
+      .about-text .intro{font-size:15px}
+      .edu-row{grid-template-columns:1fr;gap:24px}
+      .brands{gap:16px}
+      .brands span{font-size:16px}
+
+      /* Contact */
+      .contact h2{font-size:clamp(30px,6vw,42px)}
+      .contact .sub{font-size:14px}
+      .contact a.mail{font-size:20px}
+      .social{gap:20px}
+
+      /* Newsletter */
+      .newsletter-form{flex-direction:column; align-items:stretch}
+      .newsletter-form input{min-height:48px}
+      .newsletter-form button{min-height:48px; padding:12px 24px}
+
+      /* Modals */
+      .modal{grid-template-columns:1fr; max-height:92vh}
+      .modal-gallery{border-radius:16px 16px 0 0; aspect-ratio:4/3}
+      .modal-gallery .sp-gallery-track div{aspect-ratio:4/3; padding:0}
+      .modal-gallery .sp-gallery-track img{width:100%; height:100%; object-fit:contain; box-shadow:none}
+      .modal-content{border-radius:0 0 16px 16px}
+      .modal-content-header{padding:24px 20px 0}
+      .modal-content-header h2{font-size:24px}
+      .modal-tabs{padding:0 12px; gap:0; overflow-x:auto; -webkit-overflow-scrolling:touch}
+      .modal-tab{padding:11px 14px; font-size:10px; min-height:44px; display:inline-flex; align-items:center; white-space:nowrap}
+      .modal-tab-panels{padding:18px 20px 28px}
+      .modal-tab-panel p{font-size:12.5px}
+      .modal-tab-panel .stats-inline strong{font-size:22px}
+      .cap-modal .modal-content-header{text-align:left}
+
+      /* Capability modal subsections */
+      .cap-photo-grid{grid-template-columns:repeat(2,1fr); gap:6px}
+      .cap-content-cards{gap:12px}
+      .cap-content-card{padding:16px}
+      .cap-content-card h4{font-size:16px}
+      .cap-metric strong{font-size:18px}
+
+      /* Lightbox */
+      .lb{padding:20px}
+      .lb-close{top:12px; right:16px; font-size:28px; min-width:44px; min-height:44px; display:flex; align-items:center; justify-content:center}
+
+      /* Touch targets — global */
+      .nav-burger{min-width:44px; min-height:44px; display:flex; align-items:center; justify-content:center}
+      .modal-close{min-width:44px; min-height:44px; display:flex; align-items:center; justify-content:center; top:10px; right:12px}
+      .proj-tags span{padding:6px 14px; font-size:10px}
+      .skill-row{gap:8px 12px}
+      .skill-row span{font-size:11.5px}
+      .timeline{padding-left:18px}
+      .tl-item{padding-left:22px}
+      .tl-role{font-size:12.5px}
+      .tl-company,.tl-en{font-size:11px}
+    }
+
+    @media(max-width:480px){
+      .nav{padding:12px 0} .nav.on{padding:8px 0}
+      .nav-logo{font-size:16px} .nav-inner{padding:0 18px}
+      .vinyl-disc{width:30px;height:30px}
+      .vinyl-disc::before{width:10px;height:10px}
+      .hero-glow{width:200px;height:200px; filter:blur(12px)}
+      .hero-leaf.l1{width:70px;height:100px;top:3%}
+      .contact-deco{width:180px;height:180px}
+      .hero{padding:100px 18px 60px}
+      .hero h1{font-size:clamp(30px,7vw,40px)}
+      .hero .lead{font-size:13px; max-width:280px}
+      .hero-keys span{padding:5px 12px; font-size:9.5px}
+
+      .sec{padding:clamp(56px,12vw,80px) 0}
+      .sec-head{margin-bottom:clamp(40px,8vw,64px)}
+      .sec-head h2{font-size:clamp(24px,4.5vw,30px)}
+      .sec-head p{font-size:12px}
+
+      .proj{padding:14px; border-radius:4px}
+      .proj-img::before, .about-pic::before{box-shadow:none}
+      .sp-card{border-radius:4px}
+      .cap{border-radius:4px}
+      .testimonial-card{border-radius:4px}
+      .phil-card{border-radius:4px}
+      .sec-divider{width:40%}
+      .proj-img{aspect-ratio:16/9}
+      .proj-stats{gap:12px}
+      .proj-stats div strong{font-size:22px}
+      .proj-stats div span{font-size:10px}
+      .proj-info h3{font-size:clamp(20px,4vw,26px)}
+
+      .cat-filters{gap:6px}
+      .cat-pill{padding:8px 14px; font-size:9.5px}
+
+      .client-logos{gap:14px}
+      .client-logo{width:64px;height:64px;font-size:10px}
+      .client-logo.rect{width:80px;height:40px;font-size:9px}
+
+      .testimonial-card{padding:20px}
+      .testimonial-card blockquote{font-size:13px}
+      .testimonial-card .quote-icon{font-size:36px}
+
+      .about-pic{max-width:280px}
+      .about-text p{font-size:12.5px}
+      .about-text .intro{font-size:14px}
+      .brands{gap:14px}
+      .brands span{font-size:14px}
+
+      .contact h2{font-size:clamp(28px,5vw,36px)}
+      .contact .sub{font-size:13px}
+      .contact a.mail{font-size:18px}
+      .contact-details{gap:16px; flex-direction:column}
+      .social{gap:16px}
+      .social a{font-size:10px}
+
+      .newsletter h3{font-size:16px}
+      .newsletter p{font-size:11px}
+      .newsletter-form input{min-height:46px; font-size:12px}
+      .newsletter-form button{min-height:46px; font-size:10.5px; padding:10px 20px}
+
+      .photo-row{grid-template-columns:repeat(2,1fr)}
+      .cap{padding:16px}
+
+      .sec-inner{padding:0 18px}
+      .lb{padding:16px}
+      .cap-photo-grid{grid-template-columns:repeat(2,1fr); gap:4px}
+      .modal-tabs{justify-content:flex-start}
+      .modal-tab{padding:10px 12px; font-size:9.5px}
+      .modal-content-header h2{font-size:21px}
+      .footer p{font-size:10px}
+    }
+  </style>
+</head><body><!-- NAV --><nav class="nav" id="nav"><div class="nav-inner"><a href="#" class="nav-logo">SOM</a><ul class="nav-links"><li><a href="#home">Home</a></li><li class="nav-dropdown"><a href="#work">Work</a><div class="nav-sub"><a href="#cat-graphic">Graphic Design</a><a href="#cat-brand">Brand Strategy</a><a href="#cat-copy">Copywriting</a><a href="#cat-photo">Photography & Model</a></div></li><li><a href="#capabilities">Capabilities</a></li><li><a href="#philosophy">Philosophy</a></li><li><a href="#recognition">Recognition</a></li><li><a href="#testimonials">Testimonials</a></li><li><a href="#about">About</a></li><li><a href="#contact">Contact</a></li></ul><!-- 黑胶唱片播放器 --><div class="vinyl-player" id="vinylPlayer" title="Play/Pause Music"><span class="vinyl-hint" id="vinylHint">♪ Click to play music</span><div class="vinyl-disc paused" id="vinylDisc"><div class="vinyl-shine"></div></div></div><button class="nav-burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button></div></nav><div class="menu-overlay" id="overlay"></div><div class="menu-mob" id="menu"><a href="#home" data-close>Home</a><a href="#work" data-close>Work</a><a href="#cat-graphic" data-close class="mob-sub">Graphic Design</a><a href="#cat-brand" data-close class="mob-sub">Brand Strategy</a><a href="#cat-copy" data-close class="mob-sub">Copywriting</a><a href="#cat-photo" data-close class="mob-sub">Photography & Model</a><a href="#capabilities" data-close>Capabilities</a><a href="#philosophy" data-close>Philosophy</a><a href="#recognition" data-close>Recognition</a><a href="#testimonials" data-close>Testimonials</a><a href="#about" data-close>About</a><a href="#contact" data-close>Contact</a></div><!-- ================================================================
+       HERO
+       ================================================================ --><div class="hero-glow" id="glow"></div><section class="hero" id="home"><div class="hero-geo g1"></div><div class="hero-geo g2"></div><div class="hero-content fade in"><span class="hero-icon">✦</span><p class="hero-tag">Brand Strategist &amp; Creative Designer</p><h1>Wandering the Wilds of Style<em>.</em></h1><p class="lead">Design as the language, strategy as the rhythm.<br>Finding unique expression at the intersection of brand & aesthetics.</p><div class="hero-keys"><span>Brand Design</span><span>Creative Direction</span><span>Content Strategy</span></div></div><div class="scroll-hint"><span>Scroll</span><div class="bar"></div></div></section><!-- ================================================================
+       WORK
+       ================================================================ --><section class="sec" id="work"><div class="sec-inner"><div class="sec-head fade"><span class="sec-head-icon">✦</span><p class="eyebrow">Selected Work / Selected Projects</p><h2>Case Studies</h2><p><br>Independent brand incubation to major brand upgrades every project is a synergy of strategy &amp; aesthetics.</p></div><div class="sec-divider"></div><!-- Category Filters --><div class="cat-filters fade"><a href="#cat-graphic" class="cat-pill">Graphic Design</a><a href="#cat-brand" class="cat-pill">Brand Strategy</a><a href="#cat-copy" class="cat-pill">Copywriting</a><a href="#cat-photo" class="cat-pill">Photography & Model</a></div><div class="stagger"><!-- 01: JIN QING QING --><article class="proj fade"><div class="proj-img"><img src="slide19_img05.jpg" alt="JIN QING QING — 独立文创品牌孵化" loading="lazy"></div><div class="proj-info"><span class="proj-num">01 / Brand Incubation</span><h3>JIN QING QING<small>Independent Brand</small></h3><p class="proj-desc" style="font-style:italic;color:var(--faint);">Folk culture meets contemporary aesthetics. Zero budget, ten days full brand incubation from naming to launch.</p><div class="proj-stats"><div><strong class="count-up" data-target="90" data-suffix="%">90%</strong><span>Sell-through</span></div><div><strong class="count-up" data-target="180" data-suffix="+">180+</strong><span>Seeds</span></div><div><strong class="count-up" data-target="16">16</strong><span>SKU Launch</span></div></div><div class="proj-tags"><span>Brand Incubation</span><span>Product Design</span><span>Community</span><span>Content Strategy</span></div><span class="proj-view-more">View Details</span></div></article><!-- 02: CHAGEE --><article class="proj rev fade"><div class="proj-img"><img src="slide07_img01.jpeg" alt="CHAGEETea Friends Day — 新中式茶饮活动视觉" loading="lazy"></div><div class="proj-info"><span class="proj-num">02 / Event Design</span><h3>CHAGEE<small>Tea Friends Day</small></h3><p class="proj-desc" style="font-style:italic;color:var(--faint);">New Chinese tea aesthetics pet-social theme meets oriental elegance for a unified brand experience.</p><div class="proj-stats"><div><strong>Full-chain</strong><span>Master KV to offline materials</span></div><div><strong>Viral</strong><span>Organic social sharing</span></div></div><div class="proj-tags"><span>Event Visual</span><span>Brand Experience</span><span>Neo-Chinese</span><span>CHAGEE</span></div><span class="proj-view-more">View Details</span></div></article><!-- 03: FOTILE --><article class="proj fade"><div class="proj-img"><img src="slide08_img03.jpg" alt="FOTILE文化论坛 — 新中式儒商风视觉" loading="lazy"></div><div class="proj-info"><span class="proj-num">03 / Cultural Event</span><h3>FOTILE<small>Fotile Culture Forum</small></h3><p class="proj-desc" style="font-style:italic;color:var(--faint);">Wang Xizhi's calligraphy "Heart" as a super-symbol dusky gold hues merging scholarly elegance with modern business.</p><div class="proj-stats"><div><strong>Super-symbol</strong><span>&quot;Heart&quot; throughout the event</span></div><div><strong>Praised</strong><span>Highly recognized by client</span></div></div><div class="proj-tags"><span>Event Visual</span><span>Brand Culture</span><span>Neo-Chinese</span><span>FOTILE</span></div><span class="proj-view-more">View Details</span></div></article><!-- 04: CUO --><article class="proj rev fade"><div class="proj-img"><img src="slide16_img09.jpg" alt="CUO — 佛学美学品牌全案" loading="lazy"></div><div class="proj-info"><span class="proj-num">04 / Brand Strategy</span><h3>CUO<small>Personal Jewelry Brand Strategy</small></h3><p class="proj-desc" style="font-style:italic;color:var(--faint);">Post-pandemic spiritual consumption insight from PEST/SWOT analysis, STP positioning to full brand strategy & campaign planning. A complete 0-to-1 brand strategy blueprint.</p><div class="proj-stats"><div><strong>4 Modules</strong><span>Environment · Brand · Marketing · Campaign</span></div><div><strong>Full-flow</strong><span>PEST → SWOT → STP → Execution</span></div></div><div class="proj-tags"><span>Brand Strategy</span><span>PEST</span><span>SWOT</span><span>STP</span><span>Marketing</span><span>Campaign</span></div><span class="proj-view-more">View Details</span></div></article></div></div></section><!-- Category Detail Sections (Work sub-sections) --><section class="sec sec-work-sub" id="cat-graphic"><div class="sec-inner"><div class="sec-head fade"><span class="sec-head-icon"></span><p class="eyebrow">Work / Selected Projects · 01</p><h2>Graphic Design</h2><p>KVVILOGOCHAGEEFOTILE 100+<br><i>Event key visuals, brand VI, logos, posters, packaging, book binding 100+ projects for CHAGEE, Fotile, Qingshan Forum, Midea & more.</i></p></div><div class="proj-tags fade" style="justify-content:center;"><span>CHAGEE Tea Friends Day</span><span>FOTILE Culture Forum</span><span>Qingshan Forum</span><span>Midea Launch</span><span>Mingya Shanhai</span><span>VI System</span><span>Packaging</span><span>Book Binding</span></div><!-- Sub-projects --><div class="sub-projects stagger"><!-- ★ NEW: witee健康饮·海报设计 --><div class="sp-card fade sp-clickable" data-sp="witee"><div class="sp-thumb"><img src="witee-01.jpg" alt="witee健康饮" loading="lazy"></div><div class="sp-info"><span class="sp-num">Poster Design</span><h4>witee Health Drink · Poster Design</h4><p class="sp-desc" style="font-style:italic;color:var(--faint);">Witee Health Drink brand visual identity & poster series.</p><div class="sp-meta"><span>Poster Design</span><span>Brand Visual</span><span>Series</span></div></div><div class="sp-expanded"><p><em>Positioned around "light wellness living" a natural herbal health drink brand. The poster series revolves around three pillars: Nature, Lightness, Daily Ritual. Botanical silhouettes and negative-space compositions convey ingredient purity; a dew-to-warm-white gradient palette creates a breathing, gentle feel; rounded type paired with handwritten headlines balances trust with warmth. Series includes product posters, lifestyle scenes, social media grids, and offline POS materials.</em></p><div class="sp-gallery"><div><img src="witee-01.jpg" alt="主视觉海报" loading="lazy" data-lb></div><div><img src="witee-02.jpg" alt="场景海报" loading="lazy" data-lb></div><div><img src="witee-03.jpg" alt="系列延展" loading="lazy" data-lb></div></div></div></div><!-- ★ NEW: 浏阳城市IP形象·VI设计 --><div class="sp-card fade sp-clickable" data-sp="liuyang"><div class="sp-thumb"><img src="liuyang-01.png" alt="浏阳城市IP" loading="lazy"></div><div class="sp-info"><span class="sp-num">City IP · Character Design</span><h4>Liuyang City IP · VI Design</h4><p class="sp-desc" style="font-style:italic;color:var(--faint);">"Hei Zai" Liuyang's Green-faced Lion, reimagined.</p><div class="sp-meta"><span>City IP</span><span>VI System</span><span>Hei Zai</span></div></div><div class="sp-expanded"><p><b></b>IP<b>1:1</b><b></b><b></b><b></b><b></b>VIIP<br><em>Rooted in the<b>Green-faced Lion</b>(), a centuries-old folk totem of the Liuyang River. Distilled into a 1:1 proportion, rounded eyes, soft blush, and a gentle raised hand an IP that feels at once timeless and tender. Named<b>"Hei Zai"</b>: "Hei" for its dark-green visage, echoing a cheerful "hey"; "Zai," Hunan's word for someone beloved. The VI system spans IP guidelines, city wayfinding, cultural merchandise, and digital applications.</em></p><div class="sp-gallery"><div><img src="liuyang-01.png" alt="嘿仔IP主形象" loading="lazy" data-lb></div><div><img src="liuyang-02.png" alt="VI视觉规范" loading="lazy" data-lb></div><div><img src="liuyang-03.png" alt="城市应用延展" loading="lazy" data-lb></div></div></div></div><div class="sp-card fade sp-clickable" data-sp="chagee"><div class="sp-thumb"><img src="slide07_img01.jpeg" alt="CHAGEE" loading="lazy"></div><div class="sp-info"><span class="sp-num">Event Design</span><h4>CHAGEE Tea Friends Day</h4><p class="sp-desc" style="font-style:italic;color:var(--faint);">CHAGEE Tea Friends Day 7 days, 30+ deliverables.</p><div class="sp-meta"><span>Event Visual</span><span>30+ Items</span><span>7 Days</span></div></div><div class="sp-expanded"><p><em>Led full-chain design from master KV to all collateral, blending CHAGEE's oriental aesthetics with pet-social themes.</em></p><div class="sp-gallery"><div><img src="slide07_img01.jpeg" alt="主视觉" loading="lazy" data-lb></div><div><img src="slide07_img02.jpeg" alt="物料延展" loading="lazy" data-lb></div><div><img src="slide07_img03.jpeg" alt="现场效果" loading="lazy" data-lb></div></div></div></div><div class="sp-card fade sp-clickable" data-sp="fotile"><div class="sp-thumb"><img src="slide08_img03.jpg" alt="FOTILE" loading="lazy"></div><div class="sp-info"><span class="sp-num">Cultural Event</span><h4>FOTILE Culture Forum</h4><p class="sp-desc" style="font-style:italic;color:var(--faint);">Fotile Culture Forum "Heart" super-symbol, 2 weeks, 100+ pieces.</p><div class="sp-meta"><span>Event Visual</span><span>100+ Items</span><span>2 Weeks</span></div></div><div class="sp-expanded"><p><em>"Neo-Confucian merchant" aesthetic. Wang Xizhi's  as super-symbol across all materials.</em></p><div class="sp-gallery"><div><img src="slide08_img03.jpg" alt="主视觉" loading="lazy" data-lb></div><div><img src="slide08_img04.jpeg" alt="论坛现场" loading="lazy" data-lb></div><div><img src="slide08_img05.jpeg" alt="物料展示" loading="lazy" data-lb></div></div></div></div><div class="sp-card fade sp-clickable" data-sp="qingshan"><div class="sp-thumb"><img src="qingshan-01.png" alt="青山论坛" loading="lazy"></div><div class="sp-info"><span class="sp-num">Government Forum</span><h4>Qingshan Forum</h4><p class="sp-desc" style="font-style:italic;color:var(--faint);">Wenzhou Gov × Zhejiang University 32 weeks, 100+ deliverables.</p><div class="sp-meta"><span>Government</span><span>100+ Items</span><span>32 Weeks</span></div></div><div class="sp-expanded"><p><em>Large-scale event KV design 100+ deliverables over 32 weeks. Balancing gravitas with academic sensibility.</em></p><div class="sp-gallery"><div><img src="qingshan-01.png" alt="设计延展" loading="lazy" data-lb></div><div><img src="qingshan-02.png" alt="物料应用" loading="lazy" data-lb></div><div><img src="qingshan-03.png" alt="视觉系统" loading="lazy" data-lb></div></div></div></div><div class="sp-card fade sp-clickable" data-sp="midea"><div class="sp-thumb"><img src="midea-01.png" alt="美的发布会" loading="lazy"></div><div class="sp-info"><span class="sp-num">Product Launch</span><h4>Midea Hiconics Launch</h4><p class="sp-desc" style="font-style:italic;color:var(--faint);">Midea Hiconics Launch 7 days, 20+ deliverables.</p><div class="sp-meta"><span>Launch Event</span><span>20+ Items</span><span>7 Days</span></div></div><div class="sp-expanded"><p><em>Key visual and 20+ collateral pieces for Midea Hiconics New Energy launch. Rapid 7-day delivery.</em></p><div class="sp-gallery"><div><img src="midea-02.png" alt="发布会视觉" loading="lazy" data-lb></div><div><img src="midea-03.png" alt="物料设计" loading="lazy" data-lb></div><div><img src="midea-01.png" alt="视觉延展" loading="lazy" data-lb></div></div></div></div><div class="sp-card fade sp-clickable" data-sp="mingya"><div class="sp-thumb"><img src="mingya-01.png" alt="明亚珊海" loading="lazy"></div><div class="sp-info"><span class="sp-num">Brand Identity</span><h4>Mingya Shanhai Logo & Poster</h4><p class="sp-desc" style="font-style:italic;color:var(--faint);">Mingya Shanhai Consulting Office custom logo & poster design.</p><div class="sp-meta"><span>Logo Design</span><span>Brand Poster</span></div></div><div class="sp-expanded"><p><em>Custom logo and poster series for Mingya Shanhai Consulting Office translating firm name meaning into tangible brand identity.</em></p><div class="sp-gallery"><div><img src="mingya-02.png" alt="Logo方案" loading="lazy" data-lb></div><div><img src="mingya-03.png" alt="海报设计" loading="lazy" data-lb></div><div><img src="mingya-01.png" alt="品牌应用" loading="lazy" data-lb></div></div></div></div><div class="sp-card fade sp-clickable" data-sp="packaging"><div class="sp-thumb"><img src="packaging-01.jpg" alt="包装书籍" loading="lazy"></div><div class="sp-info"><span class="sp-num">Packaging & Book</span><h4>Packaging & Book Binding</h4><p class="sp-desc" style="font-style:italic;color:var(--faint);">Concept books + product packaging design.</p><div class="sp-meta"><span>Book Binding</span><span>Packaging</span></div></div><div class="sp-expanded"><p><em>Conceptual books exploring narrative through book form. Product packaging from structure to visual presentation.</em></p><div class="sp-gallery"><div><img src="packaging-02.png" alt="书籍设计" loading="lazy" data-lb></div><div><img src="packaging-03.jpg" alt="包装设计" loading="lazy" data-lb></div><div><img src="packaging-01.jpg" alt="实物展示" loading="lazy" data-lb></div></div></div></div></div></div></section><section class="sec sec-alt sec-work-sub" id="cat-brand"><div class="sec-inner"><div class="sec-head fade"><span class="sec-head-icon"></span><p class="eyebrow">Work / Selected Projects · 02</p><h2>Brand Strategy</h2><p>PEST/SWOTVIJIN QING QING<br><i>Full-spectrum brand strategy PEST/SWOT, positioning, naming, VI, marketing campaigns. Key cases: "CUO" jewelry brand, JIN QING QING cultural brand incubation.</i></p></div><div class="proj-tags fade" style="justify-content:center;"><span>Full-suite</span><span>PEST/SWOT</span><span>Naming</span><span>STP</span><span>Research</span><span>Campaign</span></div><!-- Sub-projects --><div class="sub-projects stagger"><div class="sp-card fade sp-clickable" data-sp="cuo"><div class="sp-thumb"><img src="cuo-01.png" alt="CUO" loading="lazy"></div><div class="sp-info"><span class="sp-num">Brand Strategy</span><h4>CUO · Jewelry Brand Strategy</h4><p class="sp-desc" style="font-style:italic;color:var(--faint);">Full jewelry brand strategy: PEST → SWOT → STP → Campaign.</p><div class="sp-meta"><span>4 Modules</span><span>Full Process</span><span>Strategy</span></div></div><div class="sp-expanded"><p><em>Comprehensive jewelry market analysis. STP positioning + full brand blueprint covering style, philosophy, naming, visual system & product lines.</em></p><div class="sp-gallery"><div><img src="cuo-02.png" alt="品牌视觉" loading="lazy" data-lb></div><div><img src="cuo-03.png" alt="视觉系统" loading="lazy" data-lb></div><div><img src="cuo-01.png" alt="品牌延展" loading="lazy" data-lb></div></div></div></div><div class="sp-card fade sp-clickable" data-sp="jinqingqing"><div class="sp-thumb"><img src="jqq-01.png" alt="JIN QING QING" loading="lazy"></div><div class="sp-info"><span class="sp-num">Brand Incubation</span><h4>JIN QING QING · Cultural Brand</h4><p class="sp-desc" style="font-style:italic;color:var(--faint);">10 days, ¥0: IP design → 16 SKUs → supply chain → offline market → 180+ seeds.</p><div class="sp-meta"><span>90%</span><span>180+</span><span>16 SKU</span></div></div><div class="sp-expanded"><p><em>Two IP characters. 16 SKUs, 2-day production. 90% 3-day sell-through, 180+ RED followers.</em></p><div class="sp-gallery"><div><img src="jqq-02.png" alt="IP形象" loading="lazy" data-lb></div><div><img src="jqq-03.png" alt="产品展示" loading="lazy" data-lb></div><div><img src="jqq-01.png" alt="市集现场" loading="lazy" data-lb></div></div></div></div><div class="sp-card fade sp-clickable" data-sp="product-line"><div class="sp-thumb"><img src="product-01.png" alt="产品线" loading="lazy"></div><div class="sp-info"><span class="sp-num">Product Strategy</span><h4>Product Line & Market Research</h4><p class="sp-desc" style="font-style:italic;color:var(--faint);">Product matrix design based on consumer research.</p><div class="sp-meta"><span>Product Strategy</span><span>Market Research</span></div></div><div class="sp-expanded"><p><em>16 SKUs across 7 categories. Jewelry product planning based on STP segmentation.</em></p><div class="sp-gallery"><div><img src="product-02.png" alt="产品系列" loading="lazy" data-lb></div><div><img src="product-03.png" alt="产品包装" loading="lazy" data-lb></div><div><img src="product-01.png" alt="产品应用" loading="lazy" data-lb></div></div></div></div><div class="sp-card fade sp-clickable" data-sp="analysis"><div class="sp-thumb"><img src="analysis-01.png" alt="分析框架" loading="lazy"></div><div class="sp-info"><span class="sp-num">Market Analysis</span><h4>Market Analysis Framework</h4><p class="sp-desc" style="font-style:italic;color:var(--faint);">PEST + Five Forces + Competitor + SWOT systematic framework.</p><div class="sp-meta"><span>PEST</span><span>5PORT</span><span>SWOT</span></div></div><div class="sp-expanded"><p><em>Post-pandemic Gen Z trends: social economy, community culture. Emotional offline experiences as competitive advantage.</em></p><div class="sp-gallery"><div><img src="analysis-02.png" alt="分析框架" loading="lazy" data-lb></div><div><img src="analysis-03.png" alt="市场数据" loading="lazy" data-lb></div><div><img src="analysis-01.png" alt="策略模型" loading="lazy" data-lb></div></div></div></div></div></div></section><section class="sec sec-work-sub" id="cat-copy"><div class="sec-inner"><div class="sec-head fade"><span class="sec-head-icon"></span><p class="eyebrow">Work / Selected Projects · 03</p><h2>Copywriting</h2><p>5+IP<br><i>Feipao Marathon WeChat operations, 50K+ viral Xiaohongshu posts, brand storytelling, IP character writing words as the brand's second design language.</i></p></div><div class="proj-tags fade" style="justify-content:center;"><span>Brand Copy</span><span>WeChat</span><span>RED</span><span>IP</span><span>Sports</span><span>Poetry</span></div><!-- Sub-projects --><div class="sub-projects stagger"><div class="sp-card fade sp-clickable" data-sp="marathon"><div class="sp-thumb"><img src="marathon-01.png" alt="飞跑马拉松" loading="lazy"></div><div class="sp-info"><span class="sp-num">WeChat Operations</span><h4>Feipao Marathon WeChat</h4><p class="sp-desc" style="font-style:italic;color:var(--faint);">Marathon science & event copywriting, layout design & daily operations.</p><div class="sp-meta"><span>WeChat</span><span>Content</span><span>Operations</span></div></div><div class="sp-expanded"><p><em>Marathon science content, event copywriting, visual layout, and daily operations for Feipao Marathon's WeChat account.</em></p><div class="sp-gallery"><div><img src="marathon-02.png" alt="公众号排版" loading="lazy" data-lb></div><div><img src="marathon-03.png" alt="内容策划" loading="lazy" data-lb></div><div><img src="marathon-01.png" alt="文案撰写" loading="lazy" data-lb></div></div></div></div><div class="sp-card fade sp-clickable" data-sp="red"><div class="sp-thumb"><img src="red-01.png" alt="小红书" loading="lazy"></div><div class="sp-info"><span class="sp-num">RED Operations</span><h4>Personal RED Account</h4><p class="sp-desc" style="font-style:italic;color:var(--faint);">50K+ viral posts, beaded bracelet sales with ¥600 avg. order value.</p><div class="sp-meta"><span>50K+ Views</span><span>¥600 AOV</span><span>Content</span></div></div><div class="sp-expanded"><p><em>Personal RED account 50K+ single-post views. Beaded bracelet content drove sales at ¥600 avg., proving content-to-commerce funnel.</em></p><div class="sp-gallery"><div><img src="red-02.png" alt="小红书内容" loading="lazy" data-lb></div><div><img src="red-03.png" alt="爆款笔记" loading="lazy" data-lb></div><div><img src="red-01.png" alt="手串展示" loading="lazy" data-lb></div></div></div></div><div class="sp-card fade sp-clickable" data-sp="storytelling"><div class="sp-thumb"><img src="story-01.png" alt="品牌文案" loading="lazy"></div><div class="sp-info"><span class="sp-num">Brand Storytelling</span><h4>Brand Story & IP Characters</h4><p class="sp-desc" style="font-style:italic;color:var(--faint);">IP character stories + brand philosophy narratives building brand personality through words.</p><div class="sp-meta"><span>Storytelling</span><span>IP</span><span>Brand Voice</span></div></div><div class="sp-expanded"><p><em>IP storytelling for JIN QING QING. Brand copy for Fotile, SOM Talk, and CUO.</em></p><div class="sp-gallery"><div><img src="story-01.png" alt="品牌文案" loading="lazy" data-lb></div><div><img src="story-02.jpg" alt="文字创作" loading="lazy" data-lb></div><div><img src="story-03.png" alt="文案案例" loading="lazy" data-lb></div></div></div></div><div class="sp-card fade sp-clickable" data-sp="poetry"><div class="sp-thumb"><img src="poetry-01.jpg" alt="诗歌创作" loading="lazy"></div><div class="sp-info"><span class="sp-num">Creative Writing</span><h4>Original Poetry & Essays</h4><p class="sp-desc" style="font-style:italic;color:var(--faint);">Modern poetry & reflective essays honing linguistic precision for brand copywriting.</p><div class="sp-meta"><span>Poetry</span><span>Essays</span><span>Creative</span></div></div><div class="sp-expanded"><p><em>Ongoing creative writing poetry and essays sharpening linguistic intuition, feeding into brand copy with literary warmth.</em></p><div class="sp-gallery"><div><img src="poetry-02.jpg" alt="诗歌作品" loading="lazy" data-lb></div><div><img src="poetry-03.png" alt="随笔创作" loading="lazy" data-lb></div><div><img src="poetry-01.jpg" alt="文字集" loading="lazy" data-lb></div></div></div></div></div></div></section><section class="sec sec-alt sec-work-sub" id="cat-photo"><div class="sec-inner"><div class="sec-head fade"><span class="sec-head-icon"></span><p class="eyebrow">Work / Selected Projects · 04</p><h2>Photography & Model</h2><p><i>Travel photography across Lhasa, Sanya, Beijing, portraits, events, model work, and handmade jewelry.</i></p></div><div class="proj-tags fade" style="justify-content:center;"><span>Lhasa Travel</span><span>Portrait</span><span>Event Photo</span><span>Model</span><span>Sanya & Beijing</span><span>Jewelry Handcraft</span></div><!-- Sub-projects --><div class="sub-projects stagger"><div class="sp-card fade sp-clickable" data-sp="lhasa"><div class="sp-thumb"><img src="lhasa-01.png" alt="拉萨旅拍" loading="lazy"></div><div class="sp-info"><span class="sp-num">Travel Photo</span><h4>Lhasa Travel Photography</h4><p class="sp-desc" style="font-style:italic;color:var(--faint);">Capturing emotion and Tibetan culture in plateau light.</p><div class="sp-meta"><span>Travel</span><span>Portrait</span><span>Lhasa</span></div></div><div class="sp-expanded"><p><em>Summer 2022: Travel photographer at Lhasa studio. Portrait sessions from Potala Palace to Barkhor Street.</em></p><div class="sp-gallery"><div><img src="lhasa-01.png" alt="拉萨一" loading="lazy" data-lb></div><div><img src="lhasa-02.png" alt="拉萨二" loading="lazy" data-lb></div><div><img src="lhasa-03.jpg" alt="拉萨三" loading="lazy" data-lb></div></div></div></div><div class="sp-card fade sp-clickable" data-sp="portrait"><div class="sp-thumb"><img src="portrait-01.png" alt="人像摄影" loading="lazy"></div><div class="sp-info"><span class="sp-num">Portrait</span><h4>Portrait Photography</h4><p class="sp-desc" style="font-style:italic;color:var(--faint);">Natural-light portraiture with design-trained composition instinct.</p><div class="sp-meta"><span>Portrait</span><span>Natural Light</span><span>Composition</span></div></div><div class="sp-expanded"><p><em>Natural-light portraiture minimizing artificial intervention. Design background makes composition instinctive.</em></p><div class="sp-gallery"><div><img src="portrait-01.png" alt="人像一" loading="lazy" data-lb></div><div><img src="portrait-02.png" alt="人像二" loading="lazy" data-lb></div><div><img src="portrait-03.png" alt="人像三" loading="lazy" data-lb></div></div></div></div><div class="sp-card fade sp-clickable" data-sp="event-photo"><div class="sp-thumb"><img src="event-01.png" alt="活动摄影" loading="lazy"></div><div class="sp-info"><span class="sp-num">Event Photo</span><h4>Event Photography</h4><p class="sp-desc" style="font-style:italic;color:var(--faint);">Brand event documentation from a designer's perspective.</p><div class="sp-meta"><span>Events</span><span>Documentation</span></div></div><div class="sp-expanded"><p><em>Event photography at Fotile Forum, CHAGEE Tea Friends Day, JIN QING QING market. Designer's eye on brand visual performance.</em></p><div class="sp-gallery"><div><img src="event-01.png" alt="活动一" loading="lazy" data-lb></div><div><img src="event-02.png" alt="活动二" loading="lazy" data-lb></div><div><img src="event-03.png" alt="活动三" loading="lazy" data-lb></div></div></div></div><div class="sp-card fade sp-clickable" data-sp="model"><div class="sp-thumb"><img src="model-01.png" alt="模特作品" loading="lazy"></div><div class="sp-info"><span class="sp-num">Model</span><h4>Model Portfolio</h4><p class="sp-desc" style="font-style:italic;color:var(--faint);">Model & co-creator understanding visual expression from both sides.</p><div class="sp-meta"><span>Model</span><span>Collaboration</span><span>Portfolio</span></div></div><div class="sp-expanded"><p><em>Collaborative model work understanding visual expression from subject's perspective. Dual experience enriches brand visual direction.</em></p><div class="sp-gallery"><div><img src="model-01.png" alt="模特一" loading="lazy" data-lb></div><div><img src="model-02.png" alt="模特二" loading="lazy" data-lb></div><div><img src="model-03.png" alt="模特三" loading="lazy" data-lb></div></div></div></div><div class="sp-card fade sp-clickable" data-sp="sanya"><div class="sp-thumb"><img src="travel-01.png" alt="三亚北京旅拍" loading="lazy"></div><div class="sp-info"><span class="sp-num">Travel</span><h4>Sanya & Beijing Travel</h4><p class="sp-desc" style="font-style:italic;color:var(--faint);">Multi-city photography expanding visual vocabulary across regions.</p><div class="sp-meta"><span>Travel</span><span>Sanya</span><span>Beijing</span></div></div><div class="sp-expanded"><p><em>Tropical light in Sanya vs. northern urban textures in Beijing enriching the aesthetic reference system for brand work.</em></p><div class="sp-gallery"><div><img src="travel-01.png" alt="旅拍一" loading="lazy" data-lb></div><div><img src="travel-02.png" alt="旅拍二" loading="lazy" data-lb></div><div><img src="travel-03.png" alt="旅拍三" loading="lazy" data-lb></div></div></div></div><div class="sp-card fade sp-clickable" data-sp="jewelry"><div class="sp-thumb"><img src="jewelry-01.png" alt="珠宝手作" loading="lazy"></div><div class="sp-info"><span class="sp-num">Handmade</span><h4>Jewelry Handcraft</h4><p class="sp-desc" style="font-style:italic;color:var(--faint);">Custom beaded jewelry design aesthetics to 3D craft, ¥600 avg.</p><div class="sp-meta"><span>Handcraft</span><span>Design</span><span>¥600 AOV</span></div></div><div class="sp-expanded"><p><em>2D aesthetics to 3D craft custom bracelets from concept to product. RED content drove orders at ¥600 avg., completing the design→product→sales loop.</em></p><div class="sp-gallery"><div><img src="jewelry-01.png" alt="珠宝手作一" loading="lazy" data-lb></div><div><img src="jewelry-02.jpg" alt="珠宝手作二" loading="lazy" data-lb></div><div><img src="jewelry-03.png" alt="珠宝手作三" loading="lazy" data-lb></div></div></div></div></div><!-- Photo Gallery --><p class="eyebrow fade" style="text-align:center;margin-top:56px;margin-bottom:24px;">Photo Gallery /</p><div class="cap-photo-grid fade" style="max-width:680px;margin:0 auto;"><div class="pw"><img src="gallery-01.png" loading="lazy" data-lb alt="产品摄影"></div><div class="pw"><img src="gallery-02.jpg" loading="lazy" data-lb alt="人像摄影"></div><div class="pw"><img src="slide10_img08.jpeg" loading="lazy" data-lb alt="静物摄影"></div><div class="pw"><img src="slide11_img00.png" loading="lazy" data-lb alt="模特作品"></div><div class="pw"><img src="slide20_img02.png" loading="lazy" data-lb alt="人像作品"></div><div class="pw"><img src="gallery-03.jpg" loading="lazy" data-lb alt="旅拍作品"></div></div></div></section><!-- ================================================================
+       CAPABILITIES
+       ================================================================ --><section class="sec sec-alt" id="capabilities"><div class="sec-inner"><div class="sec-head fade"><span class="sec-head-icon">✦</span><p class="eyebrow">Capabilities</p><h2>Beyond Design</h2><p><br>Design is more than visuals content, operations, and photography complete the creative puzzle.</p></div><div class="sec-divider"></div><div class="stagger"><div class="caps"><!-- Capability 1: Content & Community --><div class="cap fade" data-cap="content"><div class="cap-img"><img src="cap-content.jpg" alt="内容运营" loading="lazy"></div><h3>Content Strategy</h3><p class="en">Content & Community</p><p class="cap-desc" style="font-style:italic;color:var(--faint);">Mastering the content logic of Xiaohongshu & WeChat viral posts across lifestyle verticals with proven conversion.</p><span class="cap-view-more">Explore</span></div><!-- Capability 2: Copywriting --><div class="cap fade" data-cap="copy"><div class="cap-img"><img src="cap-copy.png" alt="文案创作" loading="lazy"></div><h3>Copywriting</h3><p class="en">Copy & Storytelling</p><p class="cap-desc" style="font-style:italic;color:var(--faint);">Brand copy, original poetry, reflective essays the power of words lies in insight, not ornament. Giving brands a voice.</p><span class="cap-view-more">Explore</span></div><!-- Capability 3: Photography --><div class="cap fade" data-cap="photo"><div class="cap-img"><img src="cap-photo.png" alt="摄影之眼" loading="lazy"></div><h3>Photography & Model</h3><p class="en">Photography</p><p class="cap-desc" style="font-style:italic;color:var(--faint);">Portraits, products, events the camera as the designer's third eye, revealing richer visual narratives.</p><div class="photo-row"><div class="pw"><img src="photo-row-01.png" loading="lazy"></div><div class="pw"><img src="photo-row-02.png" loading="lazy"></div><div class="pw"><img src="photo-row-03.png" loading="lazy"></div></div><span class="cap-view-more" style="margin-top:12px;display:flex;">Explore</span></div></div></div></div></section><!-- ================================================================
+       DESIGN PHILOSOPHY
+       ================================================================ --><section class="sec" id="philosophy"><div class="sec-inner"><div class="sec-head fade"><span class="sec-head-icon">§</span><p class="eyebrow">Philosophy</p><h2>My Design Philosophy</h2><p><br><i>Not just visuals but the emotional translation between brand and audience.</i></p></div><div class="sec-divider"></div><div class="philosophy-grid fade"><div class="phil-card"><span class="phil-num">01</span><h3>Insight Before Expression</h3><p class="phil-en">Insight Before Expression</p><p style="font-style:italic;color:var(--faint);">Behind every design decision lies deep understanding of brand, user, and culture. Good design is not decoration it's strategy made visible.</p></div><div class="phil-card"><span class="phil-num">02</span><h3>Less Is More But Less Must Be Precise</h3><p class="phil-en">Less Is More, With Precision</p><p style="font-style:italic;color:var(--faint);">Restrained colors, breathing whitespace, precise typography simplicity is not the goal, but the essence that remains when excess is removed.</p></div><div class="phil-card"><span class="phil-num">03</span><h3>Narrative Is Connection</h3><p class="phil-en">Narrative Is Connection</p><p style="font-style:italic;color:var(--faint);">The relationship between brand and people is built on stories. Words, images, space every medium carries narrative, infusing brands with warmth and soul.</p></div></div></div></section><hr class="sec-divider"><!-- ================================================================
+       RECOGNITION & CLIENTS
+       ================================================================ --><section class="sec sec-alt recognition" id="recognition"><div class="sec-inner"><div class="sec-head fade"><span class="sec-head-icon">◇</span><p class="eyebrow">Recognition & Clients / Honors & Clients</p><h2>Trusted by Brands</h2><p>Brands Served<br><i>Brands I've worked with and recognition earned</i></p></div><div class="sec-divider"></div><div class="client-logos fade"><div class="client-logo">FOTILE</div><div class="client-logo">Midea</div><div class="client-logo">CHAGEE</div><div class="client-logo">JIN QING QING</div><div class="client-logo">CUO</div><div class="client-logo rect">RED</div><div class="client-logo">Zhejiang University</div><div class="client-logo">DFO</div><div class="client-logo">Shanda</div></div></div></section><hr class="sec-divider"><!-- ================================================================
+       ABOUT
+       ================================================================ --><section class="sec" id="about"><div class="sec-inner"><div class="sec-head fade"><span class="sec-head-icon">✦</span><p class="eyebrow">About</p><h2>The Story Behind</h2><p>Behind every project is a creator who designs with both vision & strategy.<br>Behind every project is a creator who designs with both vision &amp; strategy.</p></div><div class="sec-divider"></div><div class="hand-drawn-line"></div><div class="about-grid fade"><div class="about-pic"><img src="slide15_img00.png" alt="靳煜宁 Som — Brand Strategist & Creative Designer" loading="lazy"></div><div class="about-text"><p class="intro">Inclusive · Playful · Multifaceted Designer, Writer, Marketer, Storyteller.<br><span style="font-size:0.7em;font-style:italic;color:var(--faint);">Inclusive · Playful · Multifaceted Designer, Writer, Marketer, Storyteller. Capricorn · INFP</span></p><p style="font-style:italic;color:var(--faint);">4 years in design from brand identity to content strategy, from indie projects to Fotile, Midea, CHAGEE. Good design isn't just beautiful it's the visual translation of brand strategy.</p><p style="font-style:italic;color:var(--faint);">Freelancer, volunteer teacher, travel photographer, jewelry artisan. Proficient in Adobe Suite, CDR, CAD finding resonance between design and life.</p><div class="skill-row"><span>Brand Identity</span><span>Visual Design</span><span>Creative Direction</span><span>Content Strategy</span><span>Social Media</span><span>Copywriting</span><span>PS / AI / CDR</span><span>CAD / Figma</span><span>Video Editing</span><span>Illustration</span></div></div></div><div class="sec-divider top"></div><div class="edu-row fade"><div><p class="label">Education /</p><div class="item"><strong>MA Fashion Marketing & Brand Management</strong><span>University of Southampton, 26fall</span><span style="display:block;font-style:italic;color:var(--faint);"></span></div><div class="item"><strong>Brand Management / Jewelry Design</strong><span>VO Art Union, 2020-2023</span><span style="display:block;font-style:italic;color:var(--faint);">Brand Management, Marketing, Jewelry & Fashion Design</span></div><div class="item"><strong>BA Visual Communication Design</strong><span>Hunan Institute of Engineering, 2018-2022</span><span style="display:block;font-style:italic;color:var(--faint);"></span></div></div><div><p class="label">Recognition /</p><div class="item"><strong>Third Place</strong><span>College Advertising Competition, Hunan 2021</span><span style="display:block;font-style:italic;color:var(--faint);"></span></div><div class="item"><strong>Top 15 15</strong><span>MIT International Tourism Pageant, 2021</span><span style="display:block;font-style:italic;color:var(--faint);">MIT</span></div><div class="item"><strong>Third Place</strong><span>Wahaha Marketing Competition, 2018</span><span style="display:block;font-style:italic;color:var(--faint);"></span></div></div></div><!-- Work Timeline --><div class="edu-row fade" style="margin-top:48px;"><div><p class="label">Work Experience / Experience</p><div class="timeline"><div class="tl-item"><span class="tl-date">2024/09</span><span class="tl-role">Event VI Designer</span><span class="tl-company">Hangzhou Junjie Culture Media</span><span class="tl-en">Freelance Event VI Designer</span></div><div class="tl-item"><span class="tl-date">2024/03-08</span><span class="tl-role">Graphic Designer</span><span class="tl-company">Shanghai Mingya Shanhai</span><span class="tl-en">Graphic Designer · Shanghai Mingya Shanhai Consulting</span></div><div class="tl-item"><span class="tl-date">2022/10-2023/12</span><span class="tl-role">Event VI Designer</span><span class="tl-company">Shanghai Shanda Culture</span><span class="tl-en">Event VI Designer · Shanghai Shanda Culture</span></div><div class="tl-item"><span class="tl-date">2022/06-08</span><span class="tl-role">Travel Photographer</span><span class="tl-company">Lhasa Studio</span><span class="tl-en">Travel Photographer · Lhasa</span></div></div></div><div><p class="label">Volunteer / Volunteer</p><div class="timeline"><div class="tl-item"><span class="tl-date">2019</span><span class="tl-role">International Volunteer</span><span class="tl-company">Thailand</span><span class="tl-en">Elephant Conservation & Kindergarten Teaching, Thailand</span></div><div class="tl-item"><span class="tl-date">2019</span><span class="tl-role">Volunteer Teacher</span><span class="tl-company">Yunnan</span><span class="tl-en">Volunteer Teacher · Guanmenshan Primary School</span></div><div class="tl-item"><span class="tl-date">2020</span><span class="tl-role">Volunteer</span><span class="tl-company">Changsha</span><span class="tl-en">Volunteer · Wangfuchen Folk Bar</span></div><div class="tl-item"><span class="tl-date">2021</span><span class="tl-role">Participant</span><span class="tl-company">YesGo Program</span><span class="tl-en">Beichen Youth YesGo Program</span></div></div></div></div><div class="brands fade"><span>Fotile FOTILE</span><span>Midea</span><span>CHAGEE</span><span>Xiaohongshu</span><span>Midea</span><span>Zhejiang Univ.</span><span>DFO Shanghai</span><span>Shanda</span></div></div></section><!-- ================================================================
+       TESTIMONIALS
+       ================================================================ --><section class="sec" id="testimonials"><div class="sec-inner"><div class="sec-head fade"><span class="sec-head-icon">◇</span><p class="eyebrow">Testimonials</p><h2>Kind Words</h2><p>Real Feedback<br><i>What collaborators say about working together</i></p></div><div class="sec-divider"></div><div class="testimonials-grid fade"><div class="testimonial-card"><div class="quote-icon">&ldquo;</div><blockquote>Som's command of brand visuals is impressive — she translates strategy into design with precision, every detail conveying cultural depth. The visual system she created for our forum perfectly captured our brand philosophy.</blockquote><div class="author"><div class="author-avatar">F</div><div><strong>Client · FOTILE</strong><span>Fotile Brand Team</span></div></div></div><div class="testimonial-card"><div class="quote-icon">&ldquo;</div><blockquote>The Tea Friends Day visuals with Som perfectly captured our new Chinese aesthetic, cleverly bridging the brand with young audiences through pet-social themes. Results exceeded expectations.</blockquote><div class="author"><div class="author-avatar">C</div><div><strong>Marketing · CHAGEE</strong><span>CHAGEE Marketing Team</span></div></div></div></div></div></section><hr class="sec-divider"><!-- ================================================================
+       CONTACT
+       ================================================================ --><section class="sec sec-alt" id="contact"><div class="sec-inner"><div class="contact fade" style="position:relative;"><div class="contact-deco"></div><span class="sec-head-icon">✦</span><p class="eyebrow">Contact</p><h2>Let's Create.</h2><p class="sub" style="font-style:italic;color:var(--faint);font-size:14px;">Open for brand design, visual strategy & content creative collaborations. The ideas paper can't hold let's talk in person.</p><a href="mailto:somwork118@163.com" class="mail">somwork118@163.com</a><div class="contact-details"><span>WeChat: som-sweetorange</span><span>WhatsApp: +86 13080226628</span></div><div class="social"><a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a><a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a><a href="#" target="_blank" rel="noopener"></a><a href="mailto:2092290370@qq.com">QQ Email</a><a href="mailto:somwork118@163.com">163 Email</a></div></div><div class="newsletter fade"><h3>Stay Inspired</h3><p><br><i>Occasional notes on design, branding & creative inspiration.</i></p><form class="newsletter-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Thanks!'; setTimeout(()=>{this.querySelector('button').textContent='Subscribe';},2000);"><input type="email" placeholder="your@email.com" required><button type="submit">Subscribe</button></form></div><div class="footer"><div class="footer-divider-dots">• • • •</div><p>© 2026 SOM · Yu Ning. Designed with intention. Designed with intention.</p></div></div></section><!-- ================================================================
+       PROJECT DETAIL MODALS (with multi-tab sub-sections)
+       ================================================================ --><!-- 01: JIN QING QING --><div class="modal-overlay" id="modal-1"><div class="modal"><button class="modal-close" data-close-modal>&times;</button><div class="modal-gallery sp-gallery"><div><img src="slide19_img05.jpg" alt="JIN QING QING" data-lb></div><div><img src="slide18_img06.jpg" alt="JIN QING QING产品线" data-lb></div><div><img src="slide19_img06.jpg" alt="JIN QING QING市集" data-lb></div><div><img src="slide19_img08.jpg" alt="JIN QING QING物料" data-lb></div><div><img src="slide19_img10.jpg" alt="JIN QING QING文创" data-lb></div><div><img src="slide18_img01.jpg" alt="JIN QING QING场景" data-lb></div><div><img src="slide19_img09.jpg" alt="JIN QING QING延展" data-lb></div></div><div class="modal-content"><div class="modal-content-header"><span class="num">01 / Brand Incubation</span><h2>JIN QING QING<small>Independent Cultural Brand</small></h2><p class="obj"><strong>—</strong>10<br><em>10 days, zero budget incubate an indie cultural brand from scratch.</em></p></div><div class="modal-tabs"><button class="modal-tab active" data-tab="overview">Overview</button><button class="modal-tab" data-tab="insight">Insight</button><button class="modal-tab" data-tab="strategy">Strategy</button><button class="modal-tab" data-tab="results">Results</button></div><div class="modal-tab-panels"><div class="modal-tab-panel active" data-panel="overview"><p style="font-style:italic;color:var(--faint);">Tapping into "neo-mysticism" culture deeply understanding Gen-Z journal enthusiasts' desire for mystique and self-expression. Independently led naming, VI system, 16 SKU designs, supply chain, and Xiaohongshu pre-launch strategy.</p><div class="highlight">Brand Incubation / · Product Design / · Social Strategy / · Community Building /</div></div><div class="modal-tab-panel" data-panel="insight"><p style="font-style:italic;color:var(--faint);">Gen-Z journaling community craves mysticism and personal expression, but the market lacks products with both aesthetics and cultural depth.</p><p style="font-style:italic;color:var(--faint);">Traditional folk culture is undervalued by young consumers a huge opportunity for "cultural translation" into contemporary visual language.</p></div><div class="modal-tab-panel" data-panel="strategy"><p style="font-style:italic;color:var(--faint);">"Neo-mysticism cultural goods" reconstructing folk symbols with contemporary design, balancing mystique with everyday appeal.</p><p><strong>Execution Path</strong></p><p>① + Brand naming + VI<br>② 16 SKU //Product design<br>③ + Supply chain + production<br>④ + Pre-launch + offline market debut</p></div><div class="modal-tab-panel" data-panel="results"><div class="stats-inline"><div><strong>90%</strong><span>3-Day Sell-through</span></div><div><strong>180+</strong><span>Community Seeds</span></div><div><strong>B2B</strong><span>IP Commercial Expansion</span></div></div><p style="font-style:italic;color:var(--faint);">Direct user reach via offline market drove efficient private-domain growth. B2B partnerships validated the brand IP's commercial scalability a complete journey from cultural insight to business validation.</p><div class="tags"><span>Brand Incubation</span><span>Product Design</span><span>Social Strategy</span><span>Community Building</span></div></div></div></div></div></div><!-- 02: CHAGEE --><div class="modal-overlay" id="modal-2"><div class="modal"><button class="modal-close" data-close-modal>&times;</button><div class="modal-gallery sp-gallery"><div><img src="slide07_img01.jpeg" alt="CHAGEETea Friends Day主视觉" data-lb></div><div><img src="slide07_img02.jpeg" alt="物料延展" data-lb></div><div><img src="slide07_img03.jpeg" alt="现场效果" data-lb></div><div><img src="slide07_img04.jpeg" alt="社交传播" data-lb></div></div><div class="modal-content"><div class="modal-content-header"><span class="num">02 / Event Design</span><h2>CHAGEE<small>Tea Friends Day</small></h2><p class="obj"><strong>—</strong><br><em>Pet-social angle to strengthen the brand's youthful, warm, companionable image.</em></p></div><div class="modal-tabs"><button class="modal-tab active" data-tab="overview">Overview</button><button class="modal-tab" data-tab="insight">Insight</button><button class="modal-tab" data-tab="strategy">Strategy</button><button class="modal-tab" data-tab="results">Results</button></div><div class="modal-tab-panels"><div class="modal-tab-panel active" data-panel="overview"><p style="font-style:italic;color:var(--faint);">The core goal was brand personification, not product promotion. Led full-chain design from master KV to online/offline material extensions, blending oriental aesthetics with youthful, healing, social pet themes.</p><div class="highlight">Event Visual Design / · Brand Experience / · New Chinese Aesthetics /</div></div><div class="modal-tab-panel" data-panel="insight"><p style="font-style:italic;color:var(--faint);">As a leading new-Chinese tea brand, CHAGEE needed to move beyond "great tea" pets are Gen-Z's strongest social currency.</p><p style="font-style:italic;color:var(--faint);">Tea Friends Day isn't a promotion it's a brand personification experiment, conveying warmth and companionship.</p></div><div class="modal-tab-panel" data-panel="strategy"><p style="font-style:italic;color:var(--faint);">Foundation of oriental aesthetics, layered with cute pet illustrations and healing colors a unique "oriental tea × pet social" visual language.</p></div><div class="modal-tab-panel" data-panel="results"><div class="stats-inline"><div><strong>Full-chain</strong><span>Complete visual delivery</span></div><div><strong>Viral</strong><span>Organic social sharing driven</span></div></div><p style="font-style:italic;color:var(--faint);">The design effectively drove offline check-ins and organic social sharing, providing core visual momentum for event traffic and brand affinity.</p><div class="tags"><span>Event Visual</span><span>Brand Experience</span><span>Neo-Chinese</span><span>CHAGEE</span></div></div></div></div></div></div><!-- 03: FOTILE --><div class="modal-overlay" id="modal-3"><div class="modal"><button class="modal-close" data-close-modal>&times;</button><div class="modal-gallery sp-gallery"><div><img src="slide08_img03.jpg" alt="FOTILE文化论坛主视觉" data-lb></div><div><img src="slide08_img04.jpeg" alt="论坛现场" data-lb></div><div><img src="slide08_img05.jpeg" alt="物料展示" data-lb></div><div><img src="slide08_img01.jpg" alt="视觉延展" data-lb></div><div><img src="slide08_img03.jpg" alt="心字符号" data-lb></div><div><img src="slide08_img02.jpg" alt="现场布置" data-lb></div></div><div class="modal-content"><div class="modal-content-header"><span class="num">03 / Cultural Event</span><h2>FOTILE<small>Fotile Culture Forum</small></h2><p class="obj"><strong>—</strong><br><em>Build a visual system merging Eastern philosophy with modern business texture for a high-end cultural forum.</em></p></div><div class="modal-tabs"><button class="modal-tab active" data-tab="overview">Overview</button><button class="modal-tab" data-tab="insight">Insight</button><button class="modal-tab" data-tab="strategy">Strategy</button><button class="modal-tab" data-tab="results">Results</button></div><div class="modal-tab-panels"><div class="modal-tab-panel active" data-panel="overview"><p style="font-style:italic;color:var(--faint);">"Neo-Confucian merchant" aesthetic fusing humanism with premium texture. Wang Xizhi's  (heart) as the super-symbol, embodying Fotile's "heart-centered" philosophy. Dusky gold tones balance scholarly tradition with modern business.</p><div class="highlight">Super-symbol Design / · Cultural Branding / · New Chinese Aesthetic /</div></div><div class="modal-tab-panel" data-panel="insight"><p style="font-style:italic;color:var(--faint);">Fotile's core differentiation is "culture-driven" Confucian thought and Eastern philosophy are deep in its DNA. The forum visual must carry this cultural weight, not be a generic corporate event design.</p></div><div class="modal-tab-panel" data-panel="strategy"><p style="font-style:italic;color:var(--faint);">The  character from Wang Xizhi's calligraphy as the core symbol the pinnacle of calligraphy art, perfectly resonating with Fotile's "heart-centered" philosophy. Applied across KV, materials, and space for unified cultural identity.</p></div><div class="modal-tab-panel" data-panel="results"><div class="stats-inline"><div><strong>Super-symbol</strong><span>&quot;Heart&quot; throughout all materials</span></div><div><strong>Praised</strong><span>Cultural depth recognized</span></div></div><p style="font-style:italic;color:var(--faint);">The visual system was successfully applied across all event materials, creating an elegant cultural atmosphere. The client praised the presentation of "cultural depth" highly.</p><div class="tags"><span>Event Visual</span><span>Brand Culture</span><span>Neo-Chinese</span><span>FOTILE</span></div></div></div></div></div></div><!-- 04: CUO --><div class="modal-overlay" id="modal-4"><div class="modal"><button class="modal-close" data-close-modal>&times;</button><div class="modal-gallery sp-gallery"><div><img src="slide16_img09.jpg" alt="CUO品牌视觉系统" data-lb></div><div><img src="slide16_img02.png" alt="品牌环境分析与定位" data-lb></div><div><img src="slide16_img08.jpg" alt="品牌视觉风格参考" data-lb></div><div><img src="slide17_img04.png" alt="品牌建设框架" data-lb></div><div><img src="slide17_img06.png" alt="营销策略分析" data-lb></div><div><img src="slide17_img07.png" alt="产品线与视觉延展" data-lb></div><div><img src="slide17_img08.png" alt="活动策划与执行" data-lb></div></div><div class="modal-content"><div class="modal-content-header"><span class="num">04 / Brand Strategy</span><h2>CUO<small>Personal Jewelry Brand Strategy</small></h2><p class="obj"><strong>—</strong>Z<br><em>Post-pandemic, Gen Z is reshaping consumption. How to build a personal jewelry brand with emotional value and direct consumer connection?</em></p></div><div class="modal-tabs"><button class="modal-tab active" data-tab="env">01 Environment</button><button class="modal-tab" data-tab="brand">02 Brand</button><button class="modal-tab" data-tab="mkt">03 Marketing</button><button class="modal-tab" data-tab="campaign">04 Campaign</button></div><div class="modal-tab-panels"><!-- 01 环境分析 --><div class="modal-tab-panel active" data-panel="env"><p style="font-style:italic;color:var(--faint);">Comprehensive macro/micro analysis of China's jewelry market using PEST, Five Forces, competitor benchmarking, and SWOT systematically mapping opportunities and threats.</p><div class="highlight">PEST Analysis / · 5PORT / · Competitor Analysis / · SWOT /</div><p style="font-style:italic;color:var(--faint);">Post-pandemic spiritual consumption surge. Youth pay for experiences and emotional repurchase. "Curated retail" and "salon events" prove emotional offline social scenes are the new brand competitive edge.</p></div><!-- 02 品牌建设 --><div class="modal-tab-panel" data-panel="brand"><p style="font-style:italic;color:var(--faint);">Complete brand blueprint tailored to positioning and market conditions brand style, philosophy, naming, logo, visual system, and product line planning.</p><p style="font-style:italic;color:var(--faint);">STP strategy: Segmentation → Targeting → Positioning, precisely locking in core consumer segments.</p><div class="highlight">Market Research / · Brand Positioning / · Visual Reference / · Product Line /</div></div><!-- 03 营销分析 --><div class="modal-tab-panel" data-panel="mkt"><p style="font-style:italic;color:var(--faint);">Targeted development strategy based on brand and market positioning. Analysis of peer marketing cases with strategic optimization for the brand's priorities.</p><p style="font-style:italic;color:var(--faint);">Deep-dive into successful marketing approaches of peer jewelry and lifestyle brands extracting replicable frameworks and innovating with CUO's differentiated positioning.</p></div><!-- 04 活动策划 --><div class="modal-tab-panel" data-panel="campaign"><div class="stats-inline"><div><strong>4 Modules</strong><span>Environment · Brand · Marketing · Campaign</span></div><div><strong>Full-flow</strong><span>PEST → SWOT → STP → Execution</span></div></div><p style="font-style:italic;color:var(--faint);">Actionable campaign plans aligned with strategy and case learnings complete user engagement and conversion path from pre-launch to viral spread to retention.</p><p style="font-style:italic;color:var(--faint);">Data-driven feedback collection throughout campaigns establishing an agile "plan → execute → monitor → optimize" iteration loop for continuous brand operation improvement.</p><div class="tags"><span>Brand Strategy</span><span>PEST</span><span>SWOT</span><span>STP</span><span>Marketing</span><span>Campaign</span></div></div></div></div></div></div><!-- ================================================================
+       CAPABILITY DETAIL MODALS
+       ================================================================ --><!-- Capability Modal: 内容运营 Content & Community --><div class="modal-overlay" id="modal-cap-content"><div class="modal cap-modal"><button class="modal-close" data-close-modal>&times;</button><div class="modal-content"><div class="modal-content-header"><span class="num">Capability /</span><h2><small>Content & Community ·</small></h2><p class="obj"><br><em>Cross-category content creation with viral posts proving content instinct &amp; conversion.</em></p></div><div class="modal-tabs"><button class="modal-tab active" data-tab="platform">Platform</button><button class="modal-tab" data-tab="cases">Cases</button><button class="modal-tab" data-tab="metrics">Metrics</button></div><div class="modal-tab-panels"><div class="modal-tab-panel active" data-panel="platform"><div class="cap-content-cards"><div class="cap-content-card"><h4>RED Content Strategy</h4><p class="en-sub">Xiaohongshu Strategy</p><p style="font-style:italic;color:var(--faint);">Lifestyle content across study notes, DIY tutorials, product reviews, and store explorations multi-category high-quality content with deep understanding of platform algorithms.</p><div class="cap-metric"><strong>—</strong><span>Viral posts featured</span></div></div><div class="cap-content-card"><h4>WeChat Operations</h4><p class="en-sub">WeChat Official Account</p><p style="font-style:italic;color:var(--faint);">Long-form content planning with visual layout design brand storytelling and in-depth content construction, from topic planning to final visual presentation.</p><div class="cap-metric"><strong>—</strong><span>· Full content system</span></div></div></div></div><div class="modal-tab-panel" data-panel="cases"><p><strong>Content Categories</strong></p><p>✦ Study & Productivity<br>✦ DIY & Crafts<br>✦ Product Recommendations<br>✦ Store & Experience Reviews<br>✦ Brand Storytelling</p><p style="font-style:italic;color:var(--faint);">Each category has its own visual style and tone, yet maintains a unified aesthetic DNA restrained expression, refined layout, authentic experience.</p></div><div class="modal-tab-panel" data-panel="metrics"><div class="cap-content-cards"><div class="cap-content-card"><h4>Content Conversion</h4><p class="en-sub">From Traffic to Trust</p><p style="font-style:italic;color:var(--faint);">Beyond traffic numbers focusing on brand recognition and user trust, treating content as long-term brand equity, not one-time consumption.</p></div><div class="cap-content-card"><h4>Cross-Category Validation</h4><p class="en-sub">Multi-domain Content Intuition</p><p style="font-style:italic;color:var(--faint);">Multi-domain experience means stronger user insight understanding diverse audience content needs for more precise creative direction.</p></div></div></div></div></div></div></div><!-- Capability Modal: 文案创作 Copywriting --><div class="modal-overlay" id="modal-cap-copy"><div class="modal cap-modal"><button class="modal-close" data-close-modal>&times;</button><div class="modal-content"><div class="modal-content-header"><span class="num">Capability /</span><h2><small>Copy & Storytelling · ·</small></h2><p class="obj"><br><em>The power of words lies in insight, not ornament giving brands a precise, warm voice.</em></p></div><div class="modal-tabs"><button class="modal-tab active" data-tab="brand-copy">Brand</button><button class="modal-tab" data-tab="poetry">Poetry</button><button class="modal-tab" data-tab="approach">Approach</button></div><div class="modal-tab-panels"><div class="modal-tab-panel active" data-panel="brand-copy"><p style="font-style:italic;color:var(--faint);">Complete verbal solutions from brand naming and slogans to product descriptions and brand stories translating abstract strategy into concrete, warm language.</p><div class="highlight">/ / Slogan / /</div><p style="font-style:italic;color:var(--faint);">Brands served: Fotile, Midea, CHAGEE, JIN QING QING, Feipao Marathon each with a distinct verbal personality and linguistic style.</p></div><div class="modal-tab-panel" data-panel="poetry"><p style="font-style:italic;color:var(--faint);">Ongoing practice of modern poetry and reflective essays exploring the boundaries of emotion and aesthetics through words. Poetry hones linguistic intuition, feeding back into brand copy's precision and emotional resonance.</p><p style="font-style:italic;color:var(--faint);">"Words are the designer's other brush."</p></div><div class="modal-tab-panel" data-panel="approach"><p><strong>Creative Philosophy</strong></p><p style="margin-top:12px;font-style:italic;color:var(--faint);">① Insight before expression behind every word is deep understanding of brand, user, and culture.<br>② Less is more the fewest words for the most accurate message and richest emotion.<br>③ Words as brand personality copy isn't decoration, it's the brand's voice in dialogue with users.</p></div></div></div></div></div><!-- Capability Modal: 摄影作品 Photography --><div class="modal-overlay" id="modal-cap-photo"><div class="modal cap-modal"><button class="modal-close" data-close-modal>&times;</button><div class="modal-content"><div class="modal-content-header"><span class="num">Capability /</span><h2><small>Photography · ·</small></h2><p class="obj"><br><em>The camera as the designer's third eye revealing richer visual narratives for brands.</em></p></div><div class="modal-tabs"><button class="modal-tab active" data-tab="portrait">Portrait</button><button class="modal-tab" data-tab="product">Product</button><button class="modal-tab" data-tab="travel">Travel</button></div><div class="modal-tab-panels"><div class="modal-tab-panel active" data-panel="portrait"><p style="font-style:italic;color:var(--faint);">Natural-light portraiture capturing authentic emotion and fleeting moments design background makes composition and color instinctive.</p><div class="cap-photo-grid"><div class="pw"><img src="cap-portrait-01.png" alt="人像作品" data-lb></div><div class="pw"><img src="cap-portrait-02.png" alt="人像作品" data-lb></div><div class="pw"><img src="cap-portrait-03.png" alt="人像作品" data-lb></div></div><p class="img-caption">Selected portrait works ·</p></div><div class="modal-tab-panel" data-panel="product"><p style="font-style:italic;color:var(--faint);">Design thinking applied to product photography from lighting to scene, every shot extends the brand's visual identity.</p><div class="cap-photo-grid"><div class="pw"><img src="cap-product-01.jpg" alt="产品摄影" data-lb></div><div class="pw"><img src="slide10_img07.jpg" alt="产品摄影" data-lb></div><div class="pw"><img src="slide10_img08.jpeg" alt="产品摄影" data-lb></div></div><p class="img-caption">Selected product & still life works ·</p></div><div class="modal-tab-panel" data-panel="travel"><p style="font-style:italic;color:var(--faint);">Discovering the interplay of space, light, and humanity through travel cultivating a designer's observation and narrative sense.</p><div class="cap-photo-grid"><div class="pw"><img src="cap-travel-01.png" alt="旅拍作品" data-lb></div><div class="pw"><img src="cap-travel-02.jpg" alt="旅拍作品" data-lb></div><div class="pw"><img src="cap-travel-03.jpg" alt="旅拍作品" data-lb></div></div><p class="img-caption">Selected travel photography ·</p></div></div></div></div></div><!-- ================================================================
+       LIGHTBOX
+       ================================================================ --><div class="lb" id="lightbox"><button class="lb-close">&times;</button><img src= alt= id="lb-img"></div><!-- BACK TO TOP --><button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button><div class="corner-mark"></div><!-- ================================================================
+       SCRIPTS
+       ================================================================ -->
+  <script>
+    (function(){
+      const nav=document.getElementById('nav'), burger=document.getElementById('burger');
+      const menu=document.getElementById('menu'), overlay=document.getElementById('overlay');
+      const glow=document.getElementById('glow');
+
+      function onScroll(){ nav.classList.toggle('on',window.scrollY>60); }
+      window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+
+      function openMenu(){ menu.classList.add('on'); overlay.classList.add('on'); burger.classList.add('on'); document.body.style.overflow='hidden'; }
+      function closeMenu(){ menu.classList.remove('on'); overlay.classList.remove('on'); burger.classList.remove('on'); document.body.style.overflow=''; }
+      burger.addEventListener('click',()=>menu.classList.contains('on')?closeMenu():openMenu());
+      overlay.addEventListener('click',closeMenu);
+      menu.querySelectorAll('[data-close]').forEach(l=>l.addEventListener('click',closeMenu));
+
+      // ── ② 全局鼠标光晕 ──
+      if(glow){
+        glow.style.left='50%';glow.style.top='50%';glow.style.opacity='0.15';
+        if(matchMedia('(pointer:fine)').matches){
+          document.addEventListener('mousemove',e=>{
+            glow.style.left=e.clientX+'px';glow.style.top=e.clientY+'px';
+            glow.style.opacity='1';
+          });
+          document.addEventListener('mouseleave',()=>{glow.style.opacity='0.15';});
+        }
+      }
+
+      // ── ① 滚动动画 + ④ 导航高亮 + ③ 数字递增 ──
+      const sections=[];
+      document.querySelectorAll('section[id]').forEach(sec=>sections.push(sec));
+      const navLinks=document.querySelectorAll('.nav-links a');
+
+      function updateNavHighlight(){
+        let current='';
+        sections.forEach(sec=>{
+          const top=sec.getBoundingClientRect().top;
+          if(top<window.innerHeight*0.4) current=sec.id;
+        });
+        navLinks.forEach(a=>{
+          a.classList.toggle('nav-active', a.getAttribute('href')==='#'+current);
+        });
+      }
+
+      const io=new IntersectionObserver(entries=>{
+        entries.forEach(e=>{
+          if(e.isIntersecting){
+            e.target.classList.add('in');
+            // 触发数字递增
+            const counters=e.target.querySelectorAll('.count-up');
+            counters.forEach(c=>animateCount(c));
+            io.unobserve(e.target);
+          }
+        });
+      },{rootMargin:'0px 0px -48px 0px',threshold:0.08});
+      document.querySelectorAll('.fade').forEach(el=>{if(el.closest('.hero')&&el.classList.contains('in'))return;io.observe(el);});
+
+      // ③ 数字递增动画
+      function animateCount(el){
+        const target=parseInt(el.dataset.target);
+        const suffix=el.dataset.suffix||'';
+        const prefix=el.dataset.prefix||'';
+        if(isNaN(target)) return;
+        const dur=1500, start=performance.now();
+        function tick(now){
+          const p=Math.min((now-start)/dur,1);
+          const eased=1-Math.pow(1-p,3); // ease-out
+          el.textContent=prefix+Math.round(eased*target)+suffix;
+          if(p<1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+      }
+
+      // 滚动时更新导航
+      let scrollTicking=false;
+      window.addEventListener('scroll',()=>{
+        if(!scrollTicking){requestAnimationFrame(()=>{updateNavHighlight();scrollTicking=false;});scrollTicking=true;}
+      },{passive:true});
+      updateNavHighlight();
+
+      // Smooth scroll for nav links
+      document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',function(e){const t=document.querySelector(this.getAttribute('href'));if(t){e.preventDefault();const h=nav.getBoundingClientRect().height;window.scrollTo({top:t.getBoundingClientRect().top+window.scrollY-h-16,behavior:'smooth'});}});});
+
+      // ── Project Modals ──
+      function openModal(id) {
+        const m = document.getElementById('modal-'+id);
+        if (m) {
+          m.classList.add('on');
+          document.body.style.overflow='hidden';
+          const firstTab = m.querySelector('.modal-tab');
+          if (firstTab) switchTab(firstTab);
+          // 弹窗打开后重置轮播到第一张
+          setTimeout(() => {
+            const g = m.querySelector('.sp-gallery');
+            if (g && g._imgs) goToSlide(g, 0);
+          }, 200);
+        }
+      }
+      function closeAllModals() {
+        document.querySelectorAll('.modal-overlay.on').forEach(m=>m.classList.remove('on'));
+        if (!document.getElementById('menu').classList.contains('on')) document.body.style.overflow='';
+      }
+
+      const projCards = document.querySelectorAll('.proj');
+      projCards.forEach((card,i)=>{
+        card.addEventListener('click',(e)=>{
+          if (e.target.closest('img')) return;
+          openModal(i+1);
+        });
+      });
+
+      // ── Capability Modals ──
+      const capCards = document.querySelectorAll('.cap');
+      capCards.forEach(card=>{
+        card.addEventListener('click',(e)=>{
+          if (e.target.closest('img')) return;
+          const cap = card.dataset.cap;
+          const m = document.getElementById('modal-cap-'+cap);
+          if (m) {
+            m.classList.add('on');
+            document.body.style.overflow='hidden';
+            const firstTab = m.querySelector('.modal-tab');
+            if (firstTab) switchTab(firstTab);
+          }
+        });
+      });
+
+      // ── Tab System ──
+      function switchTab(tab) {
+        const modal = tab.closest('.modal');
+        if (!modal) return;
+        const tabName = tab.dataset.tab;
+        modal.querySelectorAll('.modal-tab').forEach(t=>t.classList.remove('active'));
+        tab.classList.add('active');
+        modal.querySelectorAll('.modal-tab-panel').forEach(p=>p.classList.remove('active'));
+        const panel = modal.querySelector('[data-panel="'+tabName+'"]');
+        if (panel) panel.classList.add('active');
+      }
+
+      document.querySelectorAll('.modal-tab').forEach(tab=>{
+        tab.addEventListener('click',(e)=>{ e.stopPropagation(); switchTab(tab); });
+      });
+
+      // ── Close buttons ──
+      document.querySelectorAll('[data-close-modal]').forEach(btn=>{
+        btn.addEventListener('click',(e)=>{ e.stopPropagation(); closeAllModals(); });
+      });
+
+      document.querySelectorAll('.modal-overlay').forEach(m=>{
+        m.addEventListener('click',(e)=>{ if(e.target===m) closeAllModals(); });
+      });
+
+      // ── Lightbox ──
+      const lb = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lb-img');
+      const lbCaption = document.getElementById('lb-caption');
+
+      function openLightbox(src, caption) {
+        lbImg.src=src; lbCaption.textContent=caption||'';
+        lb.classList.add('on'); document.body.style.overflow='hidden';
+      }
+      function closeLightbox() { lb.classList.remove('on'); document.body.style.overflow=''; }
+
+      document.querySelectorAll('[data-lb]').forEach(img=>{
+        img.addEventListener('click',(e)=>{ e.stopPropagation(); openLightbox(img.src, img.alt||''); });
+      });
+      document.querySelectorAll('.proj-img img, .cap-img img, .photo-row img, .about-pic img, .cap-photo-grid img').forEach(img=>{
+        img.addEventListener('click',(e)=>{ e.stopPropagation(); openLightbox(img.src, img.alt||''); });
+      });
+
+      lb.addEventListener('click',(e)=>{ if(e.target===lb||e.target.classList.contains('lb-close')) closeLightbox(); });
+      lb.querySelector('.lb-close').addEventListener('click',closeLightbox);
+
+      // ── Back to Top ──
+      const btt = document.getElementById('backToTop');
+      function toggleBTT(){ btt.classList.toggle('visible', window.scrollY > 600); }
+      window.addEventListener('scroll', toggleBTT, {passive:true});
+      btt.addEventListener('click', ()=>{ window.scrollTo({top:0, behavior:'smooth'}); });
+      toggleBTT();
+
+      // ── Nav dropdown toggle (click-based, all sizes) ──
+      const navDropdown = document.querySelector('.nav-dropdown');
+      if (navDropdown) {
+        const dropLink = navDropdown.querySelector('a[href="#work"]');
+        const subMenu = navDropdown.querySelector('.nav-sub');
+        dropLink.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          subMenu.classList.toggle('show');
+        });
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+          if (!navDropdown.contains(e.target)) {
+            subMenu.classList.remove('show');
+          }
+        });
+        // Sub-links: close dropdown after click
+        subMenu.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', function(e) {
+            setTimeout(() => subMenu.classList.remove('show'), 150);
+          });
+        });
+      }
+
+      // ── Image Carousel: auto-convert all .sp-gallery ──
+      document.querySelectorAll('.sp-gallery').forEach(gallery => {
+        const imgs = Array.from(gallery.querySelectorAll('img'));
+        if (imgs.length < 2) return;
+        // Wrap images in track
+        const track = document.createElement('div');
+        track.className = 'sp-gallery-track';
+        imgs.forEach(img => {
+          const slide = document.createElement('div');
+          slide.appendChild(img.cloneNode());
+          track.appendChild(slide);
+        });
+        gallery.innerHTML = '';
+        gallery.appendChild(track);
+        // Add arrows
+        const prev = document.createElement('button');
+        prev.className = 'sp-gallery-arrow prev';
+        prev.textContent = '‹';
+        prev.addEventListener('click', e => { e.stopPropagation(); moveGallery(gallery, -1); });
+        const next = document.createElement('button');
+        next.className = 'sp-gallery-arrow next';
+        next.textContent = '›';
+        next.addEventListener('click', e => { e.stopPropagation(); moveGallery(gallery, 1); });
+        gallery.appendChild(prev);
+        gallery.appendChild(next);
+        // Add dots
+        const dots = document.createElement('div');
+        dots.className = 'sp-gallery-dots';
+        imgs.forEach((_, i) => {
+          const dot = document.createElement('button');
+          if (i === 0) dot.className = 'active';
+          dot.addEventListener('click', e => { e.stopPropagation(); goToSlide(gallery, i); });
+          dots.appendChild(dot);
+        });
+        gallery.appendChild(dots);
+        gallery._current = 0;
+        gallery._imgs = imgs;
+        // Touch/swipe support
+        let touchStart = 0;
+        gallery.addEventListener('touchstart', e => { touchStart = e.touches[0].clientX; }, {passive:true});
+        gallery.addEventListener('touchend', e => {
+          const diff = touchStart - e.changedTouches[0].clientX;
+          if (Math.abs(diff) > 50) moveGallery(gallery, diff > 0 ? 1 : -1);
+        });
+      });
+
+      function goToSlide(gallery, idx) {
+        gallery._current = idx;
+        gallery.querySelector('.sp-gallery-track').style.transform = `translateX(-${idx*100}%)`;
+        gallery.querySelectorAll('.sp-gallery-dots button').forEach((d,i) => d.classList.toggle('active', i===idx));
+        // Re-bind lightbox on current img
+        const curImg = gallery.querySelectorAll('.sp-gallery-track img')[idx];
+        if (curImg) curImg.addEventListener('click', e => { e.stopPropagation(); openLightbox(curImg.src, curImg.alt||''); });
+      }
+      function moveGallery(gallery, dir) {
+        const len = gallery._imgs.length;
+        const idx = (gallery._current + dir + len) % len;
+        goToSlide(gallery, idx);
+      }
+      // Bind lightbox on all carousel images
+      document.addEventListener('click', function(e) {
+        const img = e.target.closest('.sp-gallery-track img');
+        if (img) { e.stopPropagation(); openLightbox(img.src, img.alt||''); }
+      });
+
+      // ── Sub-project card click-to-expand ──
+      document.querySelectorAll('.sp-clickable').forEach(card => {
+        card.addEventListener('click', function(e) {
+          if (e.target.closest('img')) return; // Don't toggle when clicking images
+          // Close other expanded cards in same section
+          const section = card.closest('.sub-projects');
+          if (section) {
+            section.querySelectorAll('.sp-card.expanded').forEach(c => {
+              if (c !== card) c.classList.remove('expanded');
+            });
+          }
+          card.classList.toggle('expanded');
+        });
+      });
+
+      // ── Card mouse-tracking glow ──
+      if (matchMedia('(pointer:fine)').matches) {
+        document.querySelectorAll('.proj, .cap').forEach(card => {
+          card.addEventListener('mousemove', e => {
+            const r = card.getBoundingClientRect();
+            const x = ((e.clientX - r.left) / r.width) * 100;
+            const y = ((e.clientY - r.top) / r.height) * 100;
+            card.style.setProperty('--mx', x+'%');
+            card.style.setProperty('--my', y+'%');
+          });
+          card.addEventListener('mouseleave', () => {
+            card.style.setProperty('--mx', '50%');
+            card.style.setProperty('--my', '50%');
+          });
+        });
+      }
+
+      // ── Escape key ──
+      document.addEventListener('keydown',(e)=>{
+        if (e.key==='Escape') {
+          if (lb.classList.contains('on')) { closeLightbox(); return; }
+          if (document.querySelectorAll('.modal-overlay.on').length>0) { closeAllModals(); return; }
+          closeMenu();
+        }
+      });
+
+      // ── 飘落粒子（Hero区域） ──
+      (function initParticles() {
+        const hero = document.querySelector('.hero');
+        if (!hero) return;
+        const colors = ['#B5C4B1', '#D4A394', '#a89880'];
+        for (let i = 0; i < 10; i++) {
+          const p = document.createElement('div');
+          p.style.cssText = `
+            position:absolute; pointer-events:none; z-index:0;
+            width:${2 + Math.random()*4}px; height:${2 + Math.random()*4}px;
+            border-radius:${Math.random()>0.5 ? '50%' : '1px'};
+            background:${colors[Math.floor(Math.random()*3)]};
+            opacity:${0.15 + Math.random()*0.25};
+            left:${Math.random()*100}%; top:${-5 - Math.random()*20}%;
+            animation:floatDown ${6 + Math.random()*10}s linear infinite;
+            animation-delay:${Math.random()*8}s;
+          `;
+          hero.appendChild(p);
+        }
+        const style = document.createElement('style');
+        style.textContent = `@keyframes floatDown {
+          0%{transform:translateY(0) translateX(0) rotate(0deg); opacity:0;}
+          10%{opacity:0.3;}
+          90%{opacity:0.3;}
+          100%{transform:translateY(105vh) translateX(${20-Math.random()*40}px) rotate(${180+Math.random()*360}deg); opacity:0;}
+        }`;
+        document.head.appendChild(style);
+      })();
+
+      // ── 互补光晕已由全局光晕替代 ──
+
+      // ── 加载序列动画（依次展开） ──
+      document.querySelectorAll('.hero-content > *').forEach((el, i) => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(16px)';
+        el.style.transition = 'opacity 0.8s var(--ease), transform 0.8s var(--ease)';
+        el.style.transitionDelay = `${0.2 + i*0.15}s`;
+        requestAnimationFrame(() => { el.style.opacity = ''; el.style.transform = ''; });
+      });
+
+      // ── 黑胶唱片播放器 ──
+      const vinylDisc = document.getElementById('vinylDisc');
+      const vinylHint = document.getElementById('vinylHint');
+      let isPlaying = false;
+
+      const audio = new Audio('music.mp3');
+      audio.loop = true;
+      audio.volume = 0.5;
+
+      function startMusic() {
+        audio.play().then(() => {
+          isPlaying = true;
+          vinylDisc.classList.remove('paused');
+          vinylHint.classList.remove('show');
+        }).catch(() => {});
+      }
+
+      function stopMusic() {
+        audio.pause();
+        isPlaying = false;
+        vinylDisc.classList.add('paused');
+      }
+
+      vinylDisc.addEventListener('click', (e) => {
+        e.stopPropagation(); e.preventDefault();
+        if (isPlaying) stopMusic(); else startMusic();
+      });
+
+      setTimeout(() => { if (!isPlaying) vinylHint.classList.add('show'); }, 1500);
+
+      // ── 图片加载渐显 ──
+      document.querySelectorAll('img').forEach(img => {
+        if (img.complete) {
+          img.classList.add('loaded');
+        } else {
+          img.addEventListener('load', () => img.classList.add('loaded'));
+          img.addEventListener('error', () => img.classList.add('loaded')); // 错误也显示
+        }
+      });
+      // 监听动态添加的图片
+      if (window.MutationObserver) {
+        new MutationObserver(mutations => {
+          mutations.forEach(m => m.addedNodes.forEach(node => {
+            if (node.tagName === 'IMG') {
+              if (node.complete) node.classList.add('loaded');
+              else { node.addEventListener('load', () => node.classList.add('loaded')); node.addEventListener('error', () => node.classList.add('loaded')); }
+            }
+            if (node.querySelectorAll) {
+              node.querySelectorAll('img').forEach(img => {
+                if (img.complete) img.classList.add('loaded');
+                else { img.addEventListener('load', () => img.classList.add('loaded')); img.addEventListener('error', () => img.classList.add('loaded')); }
+              });
+            }
+          }));
+        }).observe(document.body, { childList: true, subtree: true });
+      }
+    })();
+  </script>
+</body></html>
